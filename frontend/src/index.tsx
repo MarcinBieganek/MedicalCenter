@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import './index.css';
 import App from './App';
-import Doctor from "./components/Doctor";
+import Admin from "./components/Admin";
 import Patient from "./components/Patient";
 import reportWebVitals from './reportWebVitals';
 
@@ -19,7 +19,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="doctor" element={<Doctor />} />
+        <Route path="admin" element={<Admin />} />
         <Route path="patient" element={<Patient />} />
       </Routes>
     </BrowserRouter>

@@ -1,7 +1,7 @@
-export default function Doctor() {
+export default function Admin() {
     return (
       <main style={{ padding: "1rem 0" }}>
-        <h2>Doctor</h2>
+        <h2>Admin</h2>
       </main>
     );
   }

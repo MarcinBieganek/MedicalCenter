@@ -12,7 +12,7 @@ function App() {
           paddingBottom: "1rem",
         }}
       >
-        <Link to="/doctor">Doctor</Link> |{" "}
+        <Link to="/admin">Admin</Link> |{" "}
         <Link to="/patient">Patient</Link>
       </nav>
     </div>
