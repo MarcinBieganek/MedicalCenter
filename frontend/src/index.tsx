@@ -8,6 +8,8 @@ import {
 import './index.css';
 import App from './App';
 import Admin from "./components/Admin";
+import AdminTimeMenager from './components/AdminTimeMenager';
+import AdminAppointments from './components/AdminAppointments';
 import Patient from "./components/Patient";
 import reportWebVitals from './reportWebVitals';
 
@@ -19,7 +21,10 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="admin" element={<Admin />} />
+        <Route path="admin" element={<Admin />}>
+          <Route path="time" element={<AdminTimeMenager />} />
+          <Route path="appointments" element={<AdminAppointments />} />
+        </Route>
         <Route path="patient" element={<Patient />} />
       </Routes>
     </BrowserRouter>
