@@ -8,7 +8,7 @@ import {
 import './index.css';
 import App from './App';
 import Admin from "./components/Admin";
-import Patient from "./components/Patient";
+import Patient from "./components/Patient/Patient";
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
