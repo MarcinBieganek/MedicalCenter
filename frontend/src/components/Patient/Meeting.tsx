@@ -9,16 +9,18 @@ const Meeting = ( { meeting } : IMeetingProps ) => {
 
     return (
         <main style={{ padding: "1rem 0" }}>
-            <div>{meeting.firstName} {meeting.lastName} {meeting.startHour} {meeting.endHour}</div>
+            <h4>
+            {meeting.firstName} {meeting.lastName} {meeting.startHour} - {meeting.endHour}
             {meeting.avilable ?
-                <div onClick={() => {meeting.avilable = false}}>ZAREZERWUJ</div>
+                <button>zarezerwuj</button>
                 :
-                <div>
+                <div style={{display: "inline-block"}}>
                 {meeting.login === 'pacjent' &&
-                    <div onClick={() => {meeting.avilable = false}}>ZREZYGNUJ</div>
+                    <button>zrezygnuj</button>
                 }
                 </div>
             }
+            </h4>
         </main>
   );
 };
