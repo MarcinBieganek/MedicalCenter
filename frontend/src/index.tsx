@@ -4,18 +4,18 @@ import {
   BrowserRouter,
   Routes,
   Route,
-} from "react-router-dom";
+} from 'react-router-dom';
 import './index.css';
 
 
 import App from './App';
-import Admin from "./components/Admin";
-import AddDoctor from './components/AddDoctor';
-import Doctors from './components/Doctors';
-import Doctor from './components/Doctor';
-import AdminTimeMenager from './components/AdminTimeMenager';
-import AdminAppointments from './components/AdminAppointments';
-import Patient from "./components/Patient/Patient";
+import Admin from './components/Admin/Admin';
+import AddDoctor from './components/Admin/AddDoctor';
+import Doctors from './components/Admin/Doctors';
+import Doctor from './components/Admin/Doctor';
+import AdminTimeMenager from './components/Admin/AdminTimeMenager';
+import AdminAppointments from './components/Admin/AdminAppointments';
+import Patient from './components/Patient/Patient';
 
 import reportWebVitals from './reportWebVitals';
 

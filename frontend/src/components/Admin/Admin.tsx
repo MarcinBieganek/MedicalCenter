@@ -1,6 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
-import { getDoctors } from "../data";
-import IDoctor from "../types/IDoctor";
+import { getDoctors } from "../../data";
+import IDoctor from "../../types/IDoctor";
 
 export default function Admin() {
   let doctors = getDoctors();

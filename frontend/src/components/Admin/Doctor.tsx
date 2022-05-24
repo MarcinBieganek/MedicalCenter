@@ -1,6 +1,6 @@
 import { Outlet, Link, useParams } from "react-router-dom";
-import { getDoctor } from "../data";
-import IDoctor from "../types/IDoctor";
+import { getDoctor } from "../../data";
+import IDoctor from "../../types/IDoctor";
 
 export default function Doctor() {
     let params = useParams();
