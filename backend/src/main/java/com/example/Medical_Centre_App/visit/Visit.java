@@ -25,4 +25,44 @@ public class Visit {
         this.endTime = endTime;
         this.day = day;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public long getDoctorId() {
+        return doctorId;
+    }
+
+    public String getDoctorFirstName() {
+        return doctorFirstName;
+    }
+
+    public String getDoctorLastName() {
+        return doctorLastName;
+    }
+
+    public long getPatientId() {
+        return patientId;
+    }
+
+    public String getPatientFirstName() {
+        return patientFirstName;
+    }
+
+    public String getPatientLastName() {
+        return patientLastName;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public String getDay() {
+        return day;
+    }
 }

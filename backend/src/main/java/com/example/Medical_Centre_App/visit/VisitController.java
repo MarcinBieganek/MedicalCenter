@@ -1,6 +1,7 @@
 package com.example.Medical_Centre_App.visit;
 
 
+import com.example.Medical_Centre_App.visit.Visit;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
