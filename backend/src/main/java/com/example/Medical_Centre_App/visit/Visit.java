@@ -1,4 +1,4 @@
-package com.example.Medical_Centre_App;
+package com.example.Medical_Centre_App.visit;
 
 public class Visit {
 
