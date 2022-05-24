@@ -6,9 +6,12 @@ import {
   Route,
 } from "react-router-dom";
 import './index.css';
+
+
 import App from './App';
 import Admin from "./components/Admin";
-
+import Doctors from './components/Doctors';
+import Doctor from './components/Doctor';
 import AdminTimeMenager from './components/AdminTimeMenager';
 import AdminAppointments from './components/AdminAppointments';
 import Patient from "./components/Patient/Patient";
@@ -23,9 +26,12 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="admin" element={<Admin />}>
-          <Route path="time" element={<AdminTimeMenager />} />
-          <Route path="appointments" element={<AdminAppointments />} />
+        <Route path="admin" element={<Admin />} />
+        <Route path="doctors" element={<Doctors />}>
+          <Route path=":doctorId" element={<Doctor />}>
+            <Route path="time" element={<AdminTimeMenager />} />
+            <Route path="appointments" element={<AdminAppointments />} />
+          </Route>
         </Route>
         <Route path="patient" element={<Patient />} />
       </Routes>
