@@ -20,13 +20,12 @@ let doctors: IDoctor[] = [
         lastName: "Kowalski",
         spec: "Stomatolog",
     }
-  ];
-  
-  export function getDoctors(): IDoctor[] {
-    return doctors;
-  }
+];
 
-  export function getDoctor(id: string | undefined): IDoctor | undefined {
+export function getDoctors(): IDoctor[] {
+    return doctors;
+}
+
+export function getDoctor(id: string | undefined): IDoctor | undefined {
     return doctors.find((doctor) => doctor.id === id);
-  }
-  
+}

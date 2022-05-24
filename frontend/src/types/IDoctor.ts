@@ -3,4 +3,4 @@ export default interface IDoctor {
     firstName: string;
     lastName: string;
     spec: string;
-  }
+}
