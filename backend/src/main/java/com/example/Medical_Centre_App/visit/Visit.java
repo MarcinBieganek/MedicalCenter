@@ -4,41 +4,25 @@ public class Visit {
 
     private final long id;
     private final long doctorId;
+    private final String doctorFirstName;
+    private final String doctorLastName;
     private final long patientId;
-    private final int startTime;
-    private final int endTime;
+    private final String patientFirstName;
+    private final String patientLastName;
+    private final String startTime;
+    private final String endTime;
     private final String day;
 
-    public Visit(long id, long doctorId, long patientId, int startTime, int endTime, String day) {
+    public Visit(long id, long doctorId, String doctorFirstName, String doctorLastName, long patientId, String patientFirstName, String patientLastName, String startTime, String endTime, String day) {
         this.id = id;
         this.doctorId = doctorId;
+        this.doctorFirstName = doctorFirstName;
+        this.doctorLastName = doctorLastName;
         this.patientId = patientId;
+        this.patientFirstName = patientFirstName;
+        this.patientLastName = patientLastName;
         this.startTime = startTime;
         this.endTime = endTime;
         this.day = day;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public long getDoctorId() {
-        return doctorId;
-    }
-
-    public long getPatientId() {
-        return patientId;
-    }
-
-    public int getStartTime() {
-        return startTime;
-    }
-
-    public int getEndTime() {
-        return endTime;
-    }
-
-    public String getDay() {
-        return day;
     }
 }
