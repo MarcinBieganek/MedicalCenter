@@ -10,6 +10,7 @@ import './index.css';
 
 import App from './App';
 import Admin from "./components/Admin";
+import AddDoctor from './components/AddDoctor';
 import Doctors from './components/Doctors';
 import Doctor from './components/Doctor';
 import AdminTimeMenager from './components/AdminTimeMenager';
@@ -27,6 +28,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="admin" element={<Admin />} />
+        <Route path="adddoctor" element={<AddDoctor />} />
         <Route path="doctors" element={<Doctors />}>
           <Route path=":doctorId" element={<Doctor />}>
             <Route path="time" element={<AdminTimeMenager />} />
