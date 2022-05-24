@@ -20,4 +20,9 @@ public class DoctorController {
     public List<Doctor> getAllDoctors() {
         return doctorService.getAllDoctors();
     }
+
+    @RequestMapping(method=RequestMethod.POST, value="/doctoradd")
+    public void addDoctor(@RequestBody Doctor doctor) {
+        doctorService.addDoctor(doctor);
+    }
 }
