@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import './index.css';
 
+import './lang/i18n';
 
 import App from './App';
 import Admin from './components/Admin/Admin';

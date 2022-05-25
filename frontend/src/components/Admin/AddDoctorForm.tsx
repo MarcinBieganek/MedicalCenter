@@ -1,10 +1,12 @@
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import IDoctor from '../../types/IDoctor';
 import api from '../../services/backend';
 
 export default function AddDoctorForm() {
+    const { t, i18n } = useTranslation();
     const { register, handleSubmit, formState: { errors } } = useForm<IDoctor>();
     let navigate = useNavigate();
 
@@ -20,28 +22,28 @@ export default function AddDoctorForm() {
             const response = await api.post('/doctoradd', newDoctor);
             navigate('/admin');
         } catch (error) {
-            console.log(`Error: ${error.message}`);
+            console.log(`Error: ${error}`);
         }
     };
 
     return (
         <form onSubmit={handleSubmit(onAdd)}>
             <div>
-                <label>Imię</label>
-                <input {...register('firstName', {required: 'Imie jest wymagane'})} placeholder="Imie" />
+                <label>{ t('firstName') }</label>
+                <input {...register('firstName', {required: 'Imie jest wymagane'})} placeholder={ t('firstName') } />
                 <p style={{color: 'red'}}>{errors.firstName?.message}</p>
             </div>
             <div>
-                <label>Nazwisko</label>
-                <input {...register('lastName', {required: 'Nazwisko jest wymagane'})} placeholder="Nazwisko" />
+                <label>{ t('lastName') }</label>
+                <input {...register('lastName', {required: 'Nazwisko jest wymagane'})} placeholder={ t('lastName') } />
                 <p style={{color: 'red'}}>{errors.lastName?.message}</p>
             </div>
             <div>
-                <label>Specjalizacja</label>
-                <input {...register('spec', {required: 'Specjalizacja jest wymagana'})} placeholder="Specjalizacja" />
+                <label>{ t('spec') }</label>
+                <input {...register('spec', {required: 'Specjalizacja jest wymagana'})} placeholder={ t('spec') } />
                 <p style={{color: 'red'}}>{errors.spec?.message}</p>
             </div>
-            <button type='submit'>Dodaj lekarza</button>
+            <button type='submit'>{ t('addDoctor') }</button>
         </form>
     );
 }

@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useTranslation } from 'react-i18next';
 import { v4 } from "uuid"
 import IMeeting from "../../types/IMeeting";
 import MeetingsList from "./MeetingsList";
 
 
+
 const Patient = () => {
+  const { t, i18n } = useTranslation();
 
   const [login, setLogin] = useState<string>('pacjent');
 
@@ -15,9 +18,9 @@ const Patient = () => {
 
   return (
     <main style={{ padding: "1rem 0" }}>
-      <h2>Twoje wizyty:</h2>
+      <h2>{t('yourAppointments')}:</h2>
       <MeetingsList meetingsList={meetingsList.filter((element) => !element.avilable && element.login === login)} />
-      <h2>Dostepne wizyty:</h2>
+      <h2>{t('availableAppointments')}:</h2>
       <MeetingsList meetingsList={meetingsList.filter((element) => element.avilable)} />
     </main>
   );

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import IDoctor from '../../types/IDoctor';
 import api from '../../services/backend';
 
 export default function Admin() {
     const [doctors, setDoctors] = useState<IDoctor[]>([]);
+    const { t, i18n } = useTranslation();
 
     useEffect(() => {
         const getDoctors = async () => {
@@ -21,9 +23,9 @@ export default function Admin() {
 
     return (
         <main style={{ padding: '1rem 0' }}>
-            <h2>Admin</h2>
-            <Link to="/adddoctor">Dodaj lekarza</Link>
-            <h3>Lekarze:</h3>
+            <h2>{ t('admin') }</h2>
+            <Link to="/adddoctor">{ t('addDoctor') }</Link>
+            <h3>{ t('doctors') }:</h3>
             <nav>
                 {doctors.map((doctor: IDoctor) => (
                     <Link

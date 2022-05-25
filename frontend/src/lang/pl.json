@@ -1,0 +1,21 @@
+{
+    "welcome": "Witaj",
+    "admin": "Administrator",
+    "patient": "Pacjent",
+    "yourAppointments": "Twoje wizyty",
+    "availableAppointments": "Dostępne wizyty",
+    "bookIt": "Zarezerwuj",
+    "cancel": "Odwołaj",
+    "doctors": "Lekarze",
+    "addDoctor": "Dodaj lekarza",
+    "doctorAdding": "Dodawanie lekarza",
+    "firstName": "Imię",
+    "lastName": "Nazwisko",
+    "spec": "Specjalizacja",
+    "doctor": "Lekarz",
+    "timeManagment": "Zarządzanie terminami",
+    "bookedAppointments": "Umówione wizyty",
+    "add": "Dodaj",
+    "edit": "Edytuj",
+    "delete": "Usuń"
+}

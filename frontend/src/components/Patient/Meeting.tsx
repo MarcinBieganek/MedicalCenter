@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import IMeeting from '../../types/IMeeting';
 
 interface IMeetingProps {
@@ -6,15 +7,17 @@ interface IMeetingProps {
 }
 
 const Meeting = ( {meeting} : IMeetingProps ) => {
+  const { t, i18n } = useTranslation();
+
   return (
     <main style={{padding: '1rem 0'}}>
       <h4>
         {meeting.firstName} {meeting.lastName} {meeting.startHour} - {meeting.endHour}
         {meeting.avilable ?
-                <button>zarezerwuj</button> :
+                <button>{ t('bookIt') }</button> :
                 <div style={{display: 'inline-block'}}>
                   {meeting.login === 'pacjent' &&
-                    <button>zrezygnuj</button>
+                    <button>{ t('cancel') }</button>
                   }
                 </div>
         }
