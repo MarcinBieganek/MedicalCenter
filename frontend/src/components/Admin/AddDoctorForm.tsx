@@ -1,21 +1,24 @@
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import IDoctor from '../../types/IDoctor';
 import api from '../../services/backend';
 
 export default function AddDoctorForm() {
     const { register, handleSubmit, formState: { errors } } = useForm<IDoctor>();
+    let navigate = useNavigate();
 
     const onAdd: SubmitHandler<IDoctor> = async (data) => {
         alert(JSON.stringify(data));
         const newDoctor = {
-            id: 4444,
+            id: 44,
             firstName: data.firstName,
             lastName: data.lastName,
             spec: data.spec,
         }
         try {
             const response = await api.post('/doctoradd', newDoctor);
+            navigate('/admin');
         } catch (error) {
             console.log(`Error: ${error.message}`);
         }
