@@ -27,7 +27,7 @@ export default function AddDoctorForm() {
         <input {...register('spec', {required: 'Specjalizacja jest wymagana'})} placeholder="Specjalizacja" />
         <p style={{color: 'red'}}>{errors.spec?.message}</p>
       </div>
-      <button>Dodaj lekarza</button>
+      <button type='submit'>Dodaj lekarza</button>
     </form>
   );
 }
