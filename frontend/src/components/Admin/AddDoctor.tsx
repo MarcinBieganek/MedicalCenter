@@ -1,6 +1,6 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import AddDoctorForm from "./AddDoctorForm";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import AddDoctorForm from './AddDoctorForm';
 
 
 export default function AddDoctor() {
