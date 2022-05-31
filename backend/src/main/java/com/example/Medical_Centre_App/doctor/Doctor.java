@@ -1,19 +1,21 @@
 package com.example.Medical_Centre_App.doctor;
 
+import java.util.UUID;
+
 public class Doctor {
-    private final long id;
+    private final String id;
     private final String firstName;
     private final String lastName;
     private final String spec;
 
-    public Doctor(long id, String firstName, String lastName, String spec) {
-        this.id = id;
+    public Doctor(String firstName, String lastName, String spec) {
+        this.id = UUID.randomUUID().toString().replaceAll("-", "");
         this.firstName = firstName;
         this.lastName = lastName;
         this.spec = spec;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 

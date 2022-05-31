@@ -12,16 +12,14 @@ import java.util.List;
 @Service
 public class DoctorService {
 
-    long counter = 4;
-
-    Doctor doctor1 = new Doctor(1,"Lekarz", "Rodzinny", "rodzinny");
-    Doctor doctor2 = new Doctor(2,"Doktor", "Inny", "chirurg");
-    Doctor doctor3 = new Doctor(3,"Tomek", "Kowalski", "stomatolog");
+    Doctor doctor1 = new Doctor("Lekarz", "Rodzinny", "rodzinny");
+    Doctor doctor2 = new Doctor("Doktor", "Inny", "chirurg");
+    Doctor doctor3 = new Doctor("Tomek", "Kowalski", "stomatolog");
     List<Doctor> doctors = new ArrayList<>(Arrays.asList(doctor1, doctor2, doctor3));
 
-    public Doctor getDoctorById(long id) {
+    public Doctor getDoctorById(String id) {
         for(Doctor doctor : doctors) {
-            if (doctor.getId() == id) {
+            if (id.equals(doctor.getId())) {
                 return doctor;
             }
         }
