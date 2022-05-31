@@ -33,4 +33,12 @@ public class DoctorService {
     public void addDoctor(Doctor doctor) {
         doctors.add(doctor);
     }
+
+    public void removeDoctor(String doctorId) {
+        for (int i = 0; i < doctors.size(); i++) {
+            if (doctors.get(i).getId().equals(doctorId)) {
+                this.doctors.remove(i);
+            }
+        }
+    }
 }

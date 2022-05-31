@@ -17,6 +17,11 @@ public class DoctorController {
         return doctorService.getDoctorById(id);
     }
 
+    @DeleteMapping("/doctordelete/{id}")
+    public void removeDoctor(@PathVariable String id) {
+         doctorService.removeDoctor(id);
+    }
+
     @GetMapping("/doctors")
     public List<Doctor> getAllDoctors() {
         return doctorService.getAllDoctors();
