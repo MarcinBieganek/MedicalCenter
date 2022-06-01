@@ -9,15 +9,15 @@ public class Visit {
 
     private final String id;
     private final Doctor doctor;
-    private final Patient patient;
+    private Patient patient;
     private final String startTime;
     private final String endTime;
     private final String day;
 
-    public Visit(Doctor doctor, Patient patient, String startTime, String endTime, String day) {
+    public Visit(Doctor doctor, String startTime, String endTime, String day) {
         this.id = UUID.randomUUID().toString().replaceAll("-", "");
         this.doctor = doctor;
-        this.patient = patient;
+        this.patient = null;
         this.startTime = startTime;
         this.endTime = endTime;
         this.day = day;
@@ -45,5 +45,9 @@ public class Visit {
 
     public String getDay() {
         return day;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 }

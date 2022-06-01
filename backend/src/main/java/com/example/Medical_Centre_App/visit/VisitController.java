@@ -1,5 +1,6 @@
 package com.example.Medical_Centre_App.visit;
 
+import com.example.Medical_Centre_App.patient.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,5 +31,15 @@ public class VisitController {
     @DeleteMapping("/visitdelete/{id}")
     public void removeVisit(@PathVariable String id) {
         visitService.removeVisit(id);
+    }
+
+    @RequestMapping(method=RequestMethod.PUT, value="/visitbook/{id}")
+    public void bookVisit(@PathVariable String id, @RequestBody Patient patient) {
+        visitService.bookVisit(id, patient);
+    }
+
+    @RequestMapping(method=RequestMethod.PUT, value="/visitunbook/{id}")
+    public void bookVisit(@PathVariable String id) {
+        visitService.unBookVisit(id);
     }
 }
