@@ -1,17 +1,8 @@
 package com.example.Medical_Centre_App.visit;
 
-
-import com.example.Medical_Centre_App.doctor.Doctor;
-import com.example.Medical_Centre_App.doctor.DoctorService;
-import com.example.Medical_Centre_App.visit.Visit;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -22,13 +13,22 @@ public class VisitController {
     private VisitService visitService;
 
     @RequestMapping("/visit/{id}")
-    public Visit getVisitById(@PathVariable long id) {
+    public Visit getVisitById(@PathVariable String id) {
         return visitService.getVisitById(id);
     }
-
 
     @GetMapping("/visits")
     public List<Visit> getAllVisits() {
         return visitService.getAllVisits();
+    }
+
+    @RequestMapping(method=RequestMethod.POST, value="/visitadd")
+    public void addVisit(@RequestBody Visit visit) {
+        visitService.addVisit(visit);
+    }
+
+    @DeleteMapping("/visitdelete/{id}")
+    public void removeVisit(@PathVariable String id) {
+        visitService.removeVisit(id);
     }
 }
