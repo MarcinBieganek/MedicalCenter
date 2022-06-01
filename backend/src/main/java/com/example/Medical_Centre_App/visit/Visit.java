@@ -8,16 +8,16 @@ import java.util.UUID;
 public class Visit {
 
     private final String id;
-    private final Doctor doctor;
-    private Patient patient;
+    private final String doctorId;
+    private String patientId;
     private final String startTime;
     private final String endTime;
     private final String day;
 
-    public Visit(Doctor doctor, String startTime, String endTime, String day) {
+    public Visit(String doctorId, String startTime, String endTime, String day) {
         this.id = UUID.randomUUID().toString().replaceAll("-", "");
-        this.doctor = doctor;
-        this.patient = null;
+        this.doctorId = doctorId;
+        this.patientId = null;
         this.startTime = startTime;
         this.endTime = endTime;
         this.day = day;
@@ -27,12 +27,12 @@ public class Visit {
         return id;
     }
 
-    public Doctor getDoctor() {
-        return doctor;
+    public String getDoctorId() {
+        return doctorId;
     }
 
-    public Patient getPatient() {
-        return patient;
+    public String getPatientId() {
+        return patientId;
     }
 
     public String getStartTime() {
@@ -47,7 +47,7 @@ public class Visit {
         return day;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
     }
 }

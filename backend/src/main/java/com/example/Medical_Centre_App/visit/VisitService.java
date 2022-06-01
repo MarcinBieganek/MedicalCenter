@@ -11,11 +11,11 @@ import java.util.List;
 @Service
 public class VisitService {
 
-    Doctor doctor = new Doctor("Lekarz", "Rodzinny", "rodzinny");
+    String doctorId = "bf68bcba8e464107b160aba8442314f7";
 
-    Visit visit1 = new Visit(doctor, "10:00", "10:15", "11-05-2020");
-    Visit visit2 = new Visit(doctor, "14:00", "14:30", "12-05-2020");
-    Visit visit3 = new Visit(doctor, "16:20", "16:30", "11-05-2020");
+    Visit visit1 = new Visit(doctorId, "10:00", "10:15", "11-05-2020");
+    Visit visit2 = new Visit(doctorId, "14:00", "14:30", "12-05-2020");
+    Visit visit3 = new Visit(doctorId, "16:20", "16:30", "11-05-2020");
     List<Visit> visits = new ArrayList<>(Arrays.asList(visit1, visit2, visit3));
 
     public Visit getVisitById(String id) {
@@ -43,10 +43,10 @@ public class VisitService {
         }
     }
 
-    public void bookVisit(String visitId, Patient patient) {
+    public void bookVisit(String visitId, String patientId) {
         for (int i = 0; i < visits.size(); i++) {
             if (visits.get(i).getId().equals(visitId)) {
-                this.visits.get(i).setPatient(patient);
+                this.visits.get(i).setPatientId(patientId);
             }
         }
     }
@@ -54,7 +54,7 @@ public class VisitService {
     public void unBookVisit(String visitId) {
         for (int i = 0; i < visits.size(); i++) {
             if (visits.get(i).getId().equals(visitId)) {
-                this.visits.get(i).setPatient(null);
+                this.visits.get(i).setPatientId(null);
             }
         }
     }
