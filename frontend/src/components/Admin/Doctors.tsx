@@ -1,7 +1,7 @@
-import { Outlet, } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
 
-export default function Doctors() {
-    return (
-      <Outlet></Outlet>
-    );
-  }
+const Doctors = () => (
+  <Outlet />
+)
+
+export default Doctors;

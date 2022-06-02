@@ -4,6 +4,7 @@ export default interface IMeeting {
   lastName: string;
   startHour: string;
   endHour: string;
+  date: string;
   avilable: boolean;
   login: string;
 }

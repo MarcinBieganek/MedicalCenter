@@ -10,12 +10,12 @@ import './index.css';
 import './lang/i18n';
 
 import App from './App';
-import Admin from './components/Admin/Admin';
 import AddDoctor from './components/Admin/AddDoctor';
-import Doctors from './components/Admin/Doctors';
-import Doctor from './components/Admin/Doctor';
-import AdminTimeMenager from './components/Admin/AdminTimeMenager';
+import Admin from './components/Admin/Admin';
 import AdminAppointments from './components/Admin/AdminAppointments';
+import AdminTimeMenager from './components/Admin/AdminTimeMenager';
+import Doctor from './components/Admin/Doctor';
+import Doctors from './components/Admin/Doctors';
 import Patient from './components/Patient/Patient';
 
 import reportWebVitals from './reportWebVitals';
@@ -24,22 +24,22 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 root.render(
-    <React.StrictMode>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="admin" element={<Admin />} />
-          <Route path="adddoctor" element={<AddDoctor />} />
-          <Route path="doctors" element={<Doctors />}>
-            <Route path=":doctorId" element={<Doctor />}>
-              <Route path="time" element={<AdminTimeMenager />} />
-              <Route path="appointments" element={<AdminAppointments />} />
-            </Route>
+  <React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="admin" element={<Admin />} />
+        <Route path="adddoctor" element={<AddDoctor />} />
+        <Route path="doctors" element={<Doctors />}>
+          <Route path=":doctorId" element={<Doctor />}>
+            <Route path="time" element={<AdminTimeMenager />} />
+            <Route path="appointments" element={<AdminAppointments />} />
           </Route>
-          <Route path="patient" element={<Patient />} />
-        </Routes>
-      </BrowserRouter>
-    </React.StrictMode>,
+        </Route>
+        <Route path="patient" element={<Patient />} />
+      </Routes>
+    </BrowserRouter>
+  </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function
