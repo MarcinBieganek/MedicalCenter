@@ -12,7 +12,6 @@ const AddDoctorForm = () => {
   const onAdd: SubmitHandler<IDoctor> = async (data) => {
     alert(JSON.stringify(data));
     const newDoctor = {
-      id: 44,
       firstName: data.firstName,
       lastName: data.lastName,
       spec: data.spec,
