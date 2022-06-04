@@ -41,4 +41,9 @@ public class DoctorService {
             }
         }
     }
+
+    public void editDoctor(Doctor doctor) {
+        removeDoctor(doctor.getId());
+        addDoctor(doctor);
+    }
 }
