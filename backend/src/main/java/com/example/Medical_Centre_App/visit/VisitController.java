@@ -18,9 +18,14 @@ public class VisitController {
         return visitService.getVisitById(id);
     }
 
-    @GetMapping("/visits")
-    public List<Visit> getAllVisits() {
-        return visitService.getAllVisits();
+    @GetMapping("/bookedvisits")
+    public List<Visit> getAllBookedVisits() {
+        return visitService.getAllBookedVisits();
+    }
+
+    @GetMapping("/unbookedvisits")
+    public List<Visit> getAllUnbookedVisits() {
+        return visitService.getAllUnbookedVisits();
     }
 
     @RequestMapping(method=RequestMethod.POST, value="/visitadd")

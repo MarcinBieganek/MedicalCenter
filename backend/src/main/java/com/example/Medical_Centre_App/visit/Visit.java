@@ -13,14 +13,16 @@ public class Visit {
     private final String startTime;
     private final String endTime;
     private final String day;
+    private Boolean isBooked;
 
-    public Visit(String doctorId, String startTime, String endTime, String day) {
+    public Visit(String doctorId, String startTime, String endTime, String day, Boolean isBooked) {
         this.id = UUID.randomUUID().toString().replaceAll("-", "");
         this.doctorId = doctorId;
         this.patientId = null;
         this.startTime = startTime;
         this.endTime = endTime;
         this.day = day;
+        this.isBooked = isBooked;
     }
 
     public String getId() {
@@ -46,6 +48,10 @@ public class Visit {
     public String getDay() {
         return day;
     }
+
+    public Boolean getIsBooked(){ return isBooked;}
+
+    public void setIsBooked(Boolean isBooked) {this.isBooked = isBooked;}
 
     public void setPatientId(String patientId) {
         this.patientId = patientId;
