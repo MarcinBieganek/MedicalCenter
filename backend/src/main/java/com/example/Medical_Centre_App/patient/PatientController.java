@@ -13,7 +13,7 @@ public class PatientController {
     private PatientService patientService;
 
     @RequestMapping("/patient/{id}")
-    public Patient getPatientById(@PathVariable long id) {
+    public Patient getPatientById(@PathVariable String id) {
         return patientService.getPatientById(id);
     }
 

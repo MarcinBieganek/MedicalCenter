@@ -1,17 +1,17 @@
 package com.example.Medical_Centre_App.patient;
 
 public class Patient {
-    private final long id;
+    private final String id;
     private final String firstName;
     private final String lastName;
 
-    public Patient(long id, String firstName, String lastName) {
+    public Patient(String id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public long getId() {
+    public String getId() {
         return this.id;
     }
 

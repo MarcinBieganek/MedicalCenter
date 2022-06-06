@@ -13,12 +13,12 @@ import java.util.List;
 public class PatientService {
     long counter = 4;
 
-    Patient patient1 = new Patient(1, "Pierwszy", "Pacjent");
-    Patient patient2 = new Patient(2, "Drugi", "Pacjent");
-    Patient patient3 = new Patient(3, "Trzeci", "Pacjent");
+    Patient patient1 = new Patient("1", "Pierwszy", "Pacjent");
+    Patient patient2 = new Patient("2", "Drugi", "Pacjent");
+    Patient patient3 = new Patient("3", "Trzeci", "Pacjent");
     List<Patient> patients = new ArrayList<>(Arrays.asList(patient1, patient2, patient3));
 
-    public Patient getPatientById(long id) {
+    public Patient getPatientById(String id) {
         for (Patient patient : patients) {
             if (patient.getId() == id) {
                 return patient;

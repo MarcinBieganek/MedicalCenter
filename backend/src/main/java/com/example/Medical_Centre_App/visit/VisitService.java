@@ -11,13 +11,22 @@ import java.util.List;
 @Service
 public class VisitService {
 
-    String doctorId = "bf68bcba8e464107b160aba8442314f7";
+    String doctorId;
+    Visit visit1;
+    Visit visit2;
+    Visit visit3;
+    List<Visit> bookedVisits;
+    List<Visit> unbookedVisits;
 
-    Visit visit1 = new Visit(doctorId, "10:00", "10:15", "11-05-2020", Boolean.FALSE);
-    Visit visit2 = new Visit(doctorId, "14:00", "14:30", "12-05-2020", Boolean.TRUE);
-    Visit visit3 = new Visit(doctorId, "16:20", "16:30", "11-05-2020", Boolean.FALSE);
-    List<Visit> bookedVisits = new ArrayList<>(Arrays.asList(visit2));
-    List<Visit> unbookedVisits = new ArrayList<>(Arrays.asList(visit1, visit3));
+    public VisitService() {
+        doctorId = "226f834076704602803768e375db6db4";
+        visit1 = new Visit(doctorId, "10:00", "10:15", "11-05-2020", Boolean.FALSE);
+        visit2 = new Visit(doctorId, "14:00", "14:30", "12-05-2020", Boolean.TRUE);
+        visit2.setPatientId("1");
+        visit3 = new Visit(doctorId, "16:20", "16:30", "11-05-2020", Boolean.FALSE);
+        bookedVisits = new ArrayList<>(Arrays.asList(visit2));
+        unbookedVisits = new ArrayList<>(Arrays.asList(visit1, visit3));
+    }
 
     public Visit getVisitById(String id) {
         for (Visit visit : bookedVisits) {
