@@ -1,113 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import api from '../../services/backend';
-
+import { v4 } from 'uuid';
 import IMeeting from '../../types/IMeeting';
-import IPatient from '../../types/IPatient';
 import MeetingsList from './MeetingsList';
 
 const Patient = () => {
-  const { t } = useTranslation();
-  const params = useParams();
+  const { t, i18n } = useTranslation();
 
-  const [patient, setPatient] = useState<IPatient>();
-  const [patientMeetingsList, setPatientMeetingsList] = useState<IMeeting[]>([]);
-  const [availableMeetingsList, setAvailableMeetingsList] = useState<IMeeting[]>([]);
+  const [login, setLogin] = useState<string>('pacjent');
 
-  useEffect(() => {
-    const getPatient = async () => {
-      try {
-        const response = await api.get(`/patient/${params.patientId}`);
-        setPatient(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    const getPatientVisits = async () => {
-      try {
-        const bookedVisitsResponse = await api.get('/bookedvisits');
-        const bookedVisits = bookedVisitsResponse.data;
-        const patientBookedVisits = bookedVisits.filter((v) => v.patientId === params.patientId);
-
-        const doctorsResponse = await api.get('/doctors');
-        const doctors = doctorsResponse.data;
-
-        const patientVisits = patientBookedVisits.map((visit) => {
-          const visitDoctor = doctors.find((d) => d.id === visit.doctorId);
-          return {
-            id: visit.id,
-            doctorFirstName: visitDoctor.firstName,
-            doctorLastName: visitDoctor.lastName,
-            doctorSpec: visitDoctor.spec,
-            startHour: visit.startTime,
-            endHour: visit.endTime,
-            date: visit.day,
-            patientId: visit.patientId,
-          }
-        });
-
-        setPatientMeetingsList(patientVisits);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    const getUnbookedVisits = async () => {
-      try {
-        const unbookedVisitsResponse = await api.get('/unbookedvisits');
-        const unbookedVisits = unbookedVisitsResponse.data;
-
-        const doctorsResponse = await api.get('/doctors');
-        const doctors = doctorsResponse.data;
-
-        const availableMeetings = unbookedVisits.map((visit) => {
-          const visitDoctor = doctors.find((d) => d.id === visit.doctorId);
-          return {
-            id: visit.id,
-            doctorFirstName: visitDoctor.firstName,
-            doctorLastName: visitDoctor.lastName,
-            doctorSpec: visitDoctor.spec,
-            startHour: visit.startTime,
-            endHour: visit.endTime,
-            date: visit.day,
-            patientId: visit.patientId,
-          }
-        });
-
-        setAvailableMeetingsList(availableMeetings);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getPatient();
-    getPatientVisits();
-    getUnbookedVisits();
-  }, [params.patientId]);
+  const [meetingsList, setMeetingsList] = useState<IMeeting[]>([
+    {
+      id: v4(), firstName: 'Lekarz', lastName: 'Przykładowy', startHour: '14:15', endHour: '14:30', date: '10.05.2022', avilable: true, login: '',
+    },
+    {
+      id: v4(), firstName: 'Adam', lastName: 'Rodzinny', startHour: '14:20', endHour: '14:40', date: '14.05.2022', avilable: true, login: '',
+    },
+    {
+      id: v4(), firstName: 'Adam', lastName: 'Rodzinny', startHour: '10:00', endHour: '10:20', date: '20.05.2022', avilable: false, login: 'pacjent',
+    }]);
 
   return (
     <main style={{ padding: '1rem 0' }}>
       <h2>
-        { t('hey') }
-        { ', ' }
-        { patient?.firstName }
-        { ' ' }
-        { patient?.lastName }
-      </h2>
-      <hr />
-      <h3>
         {t('yourAppointments')}
         :
-      </h3>
-      <MeetingsList meetingsList={patientMeetingsList} />
-      <hr />
-      <h3>
+      </h2>
+      <MeetingsList meetingsList={meetingsList.filter((element) => !element.avilable
+        && element.login === login)}
+      />
+      <h2>
         {t('availableAppointments')}
         :
-      </h3>
-      <MeetingsList meetingsList={availableMeetingsList} />
+      </h2>
+      <MeetingsList meetingsList={meetingsList.filter((element) => element.avilable)} />
     </main>
   );
 }
