@@ -5,5 +5,4 @@ export default interface IAppointment {
   startHour: string;
   endHour: string;
   date: string;
-  avilable: boolean;
 }

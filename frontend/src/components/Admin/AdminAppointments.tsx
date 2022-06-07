@@ -31,7 +31,6 @@ const AdminAppointments = () => {
             startHour: visit.startTime,
             endHour: visit.endTime,
             date: visit.day,
-            avilable: visit.isBooked,
           }
         });
 
