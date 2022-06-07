@@ -6,9 +6,10 @@ import IMeeting from '../../types/IMeeting';
 interface IMeetingProps {
     meeting: IMeeting;
     index: number;
+    deleteItem: (meeting: IMeeting) => void;
 }
 
-const Meeting = ({ meeting } : IMeetingProps) => {
+const Meeting = ({ meeting, deleteItem } : IMeetingProps) => {
   const { t } = useTranslation();
   const params = useParams();
 
@@ -28,9 +29,11 @@ const Meeting = ({ meeting } : IMeetingProps) => {
       {' '}
       {meeting.endHour}
       {' '}
-      {meeting.patientId === params.patientId
-        ? <button type="submit">{ t('cancel') }</button>
-        : <button type="submit">{ t('bookIt') }</button>}
+      <button type="button" onClick={() => deleteItem(meeting)}>
+        {meeting.patientId === params.patientId
+          ? t('cancel')
+          : t('bookIt') }
+      </button>
     </div>
   );
 }

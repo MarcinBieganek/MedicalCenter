@@ -37,12 +37,12 @@ public class VisitController {
         visitService.removeVisit(id);
     }
 
-    @RequestMapping(method=RequestMethod.PUT, value="/visitbook/")
+    @RequestMapping(method=RequestMethod.PUT, value="/visitbook")
     public void bookVisit(@RequestParam String visitId, @RequestParam String patientId) {
         visitService.bookVisit(visitId, patientId);
     }
 
-    @RequestMapping(method=RequestMethod.PUT, value="/visitunbook/")
+    @RequestMapping(method=RequestMethod.PUT, value="/visitunbook")
     public void unBookVisit(@RequestParam String visitId) {
         visitService.unBookVisit(visitId);
     }

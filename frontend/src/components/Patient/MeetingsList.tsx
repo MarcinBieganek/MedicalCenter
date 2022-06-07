@@ -4,12 +4,13 @@ import Meeting from './Meeting';
 
 interface IMeetingsListProps {
     meetingsList: IMeeting[];
+    deleteItem: (meeting: IMeeting) => void;
 }
 
-const MeetingsList = ({ meetingsList } : IMeetingsListProps) => (
+const MeetingsList = ({ meetingsList, deleteItem } : IMeetingsListProps) => (
   <div>
-    {meetingsList.map((meeting, index) => (
-      <Meeting meeting={meeting} index={index} />
+    { meetingsList.map((meeting, index) => (
+      <Meeting meeting={meeting} index={index} deleteItem={deleteItem} />
     ))}
   </div>
 )

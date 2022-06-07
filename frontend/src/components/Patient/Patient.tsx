@@ -15,73 +15,95 @@ const Patient = () => {
   const [patientMeetingsList, setPatientMeetingsList] = useState<IMeeting[]>([]);
   const [availableMeetingsList, setAvailableMeetingsList] = useState<IMeeting[]>([]);
 
+  const getPatient = async () => {
+    try {
+      const response = await api.get(`/patient/${params.patientId}`);
+      setPatient(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getPatientVisits = async () => {
+    try {
+      const bookedVisitsResponse = await api.get('/bookedvisits');
+      const bookedVisits = bookedVisitsResponse.data;
+      const patientBookedVisits = bookedVisits.filter((v) => v.patientId === params.patientId);
+
+      const doctorsResponse = await api.get('/doctors');
+      const doctors = doctorsResponse.data;
+
+      const patientVisits = patientBookedVisits.map((visit) => {
+        const visitDoctor = doctors.find((d) => d.id === visit.doctorId);
+        return {
+          id: visit.id,
+          doctorFirstName: visitDoctor.firstName,
+          doctorLastName: visitDoctor.lastName,
+          doctorSpec: visitDoctor.spec,
+          startHour: visit.startTime,
+          endHour: visit.endTime,
+          date: visit.day,
+          patientId: visit.patientId,
+        }
+      });
+
+      setPatientMeetingsList(patientVisits);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getUnbookedVisits = async () => {
+    try {
+      const unbookedVisitsResponse = await api.get('/unbookedvisits');
+      const unbookedVisits = unbookedVisitsResponse.data;
+
+      const doctorsResponse = await api.get('/doctors');
+      const doctors = doctorsResponse.data;
+
+      const availableMeetings = unbookedVisits.map((visit) => {
+        const visitDoctor = doctors.find((d) => d.id === visit.doctorId);
+        return {
+          id: visit.id,
+          doctorFirstName: visitDoctor.firstName,
+          doctorLastName: visitDoctor.lastName,
+          doctorSpec: visitDoctor.spec,
+          startHour: visit.startTime,
+          endHour: visit.endTime,
+          date: visit.day,
+          patientId: visit.patientId,
+        }
+      });
+
+      setAvailableMeetingsList(availableMeetings);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const cancelMeeting = async (meeting: IMeeting) => {
+    try {
+      await api.put('/visitunbook', null, { params: { visitId: meeting.id } });
+
+      getPatientVisits();
+      getUnbookedVisits();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const bookMeeting = async (meeting: IMeeting) => {
+    try {
+      await api.put('/visitbook', null, { params: { visitId: meeting.id, patientId: params.patientId } });
+
+      getPatientVisits();
+      getUnbookedVisits();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
-    const getPatient = async () => {
-      try {
-        const response = await api.get(`/patient/${params.patientId}`);
-        setPatient(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    const getPatientVisits = async () => {
-      try {
-        const bookedVisitsResponse = await api.get('/bookedvisits');
-        const bookedVisits = bookedVisitsResponse.data;
-        const patientBookedVisits = bookedVisits.filter((v) => v.patientId === params.patientId);
-
-        const doctorsResponse = await api.get('/doctors');
-        const doctors = doctorsResponse.data;
-
-        const patientVisits = patientBookedVisits.map((visit) => {
-          const visitDoctor = doctors.find((d) => d.id === visit.doctorId);
-          return {
-            id: visit.id,
-            doctorFirstName: visitDoctor.firstName,
-            doctorLastName: visitDoctor.lastName,
-            doctorSpec: visitDoctor.spec,
-            startHour: visit.startTime,
-            endHour: visit.endTime,
-            date: visit.day,
-            patientId: visit.patientId,
-          }
-        });
-
-        setPatientMeetingsList(patientVisits);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    const getUnbookedVisits = async () => {
-      try {
-        const unbookedVisitsResponse = await api.get('/unbookedvisits');
-        const unbookedVisits = unbookedVisitsResponse.data;
-
-        const doctorsResponse = await api.get('/doctors');
-        const doctors = doctorsResponse.data;
-
-        const availableMeetings = unbookedVisits.map((visit) => {
-          const visitDoctor = doctors.find((d) => d.id === visit.doctorId);
-          return {
-            id: visit.id,
-            doctorFirstName: visitDoctor.firstName,
-            doctorLastName: visitDoctor.lastName,
-            doctorSpec: visitDoctor.spec,
-            startHour: visit.startTime,
-            endHour: visit.endTime,
-            date: visit.day,
-            patientId: visit.patientId,
-          }
-        });
-
-        setAvailableMeetingsList(availableMeetings);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     getPatient();
     getPatientVisits();
     getUnbookedVisits();
@@ -98,16 +120,16 @@ const Patient = () => {
       </h2>
       <hr />
       <h3>
-        {t('yourAppointments')}
+        { t('yourAppointments') }
         :
       </h3>
-      <MeetingsList meetingsList={patientMeetingsList} />
+      <MeetingsList meetingsList={patientMeetingsList} deleteItem={cancelMeeting} />
       <hr />
       <h3>
-        {t('availableAppointments')}
+        { t('availableAppointments') }
         :
       </h3>
-      <MeetingsList meetingsList={availableMeetingsList} />
+      <MeetingsList meetingsList={availableMeetingsList} deleteItem={bookMeeting} />
     </main>
   );
 }
