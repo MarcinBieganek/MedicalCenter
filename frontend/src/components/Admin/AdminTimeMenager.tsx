@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Button from 'react-bootstrap/Button';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import api from '../../services/backend';
@@ -38,7 +39,7 @@ const AdminTimeMenager = () => {
   return (
     <main style={{ padding: '1rem 0' }}>
       <h3>{ t('timeManagment') }</h3>
-      <button type="submit">{ t('add') }</button>
+      <Button variant="primary" type="submit">{ t('add') }</Button>
       <DoctorsDatesList doctorsDatesList={doctorsDateList} />
     </main>
   );

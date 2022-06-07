@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import api from '../../services/backend';
 import IDoctor from '../../types/IDoctor';
 
@@ -24,24 +25,25 @@ const Admin = () => {
   return (
     <main style={{ padding: '1rem 0' }}>
       <h2>{ t('admin') }</h2>
-      <Link to="/adddoctor">{ t('addDoctor') }</Link>
+      <Button variant="primary" type="button" href="/adddoctor">{ t('addDoctor') }</Button>
       <h3>
         { t('doctors') }
         :
       </h3>
-      <nav>
-        {doctors.map((doctor: IDoctor) => (
-          <Link
-            style={{ display: 'block', margin: '1rem 0' }}
-            to={`/doctors/${doctor.id}`}
-            key={doctor.id}
-          >
-            {doctor.firstName}
-            {' '}
-            {doctor.lastName}
-          </Link>
-        ))}
-      </nav>
+
+      <div className="row">
+        <div className="col-md-3">
+          <ListGroup defaultActiveKey="#link1">
+            {doctors.map((doctor: IDoctor) => (
+              <ListGroup.Item action href={`/doctors/${doctor.id}`} key={doctor.id}>
+                {doctor.firstName}
+                {' '}
+                {doctor.lastName}
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+        </div>
+      </div>
     </main>
   );
 }

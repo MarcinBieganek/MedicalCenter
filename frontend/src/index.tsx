@@ -6,7 +6,7 @@ import {
   Route,
 } from 'react-router-dom';
 import './index.css';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './lang/i18n';
 
 import App from './App';

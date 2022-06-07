@@ -1,6 +1,6 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import './App.css';
 
 const App = () => {
@@ -15,11 +15,12 @@ const App = () => {
           paddingBottom: '1rem',
         }}
       >
-        <Link to="/admin">{ t('admin') }</Link>
+        <Button variant="primary" href="/admin">{ t('admin') }</Button>
         {' '}
         |
         {' '}
-        <Link to="/loginpatient">{ t('patient') }</Link>
+        <Button variant="primary" href="/loginpatient">{ t('patient') }</Button>
+
       </nav>
     </div>
   );

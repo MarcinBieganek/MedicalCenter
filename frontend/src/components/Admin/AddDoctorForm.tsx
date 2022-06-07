@@ -1,3 +1,6 @@
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import FormLabel from 'react-bootstrap/FormLabel';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -25,24 +28,45 @@ const AddDoctorForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onAdd)}>
-      <div>
-        <legend>{ t('firstName') }</legend>
-        <input {...register('firstName', { required: 'Imie jest wymagane' })} placeholder={t('firstName')} />
-        <p style={{ color: 'red' }}>{errors.firstName?.message}</p>
+    <main role="main" className="containter">
+      <div className="row">
+        <div className="col-md-3">
+          <Form onSubmit={handleSubmit(onAdd)}>
+            <Form.Group className="mb-4" controlId="formName">
+              <Form.Label>{ t('firstName') }</Form.Label>
+              <Form.Control
+                type="name"
+                {...register('firstName', { required: 'Imie jest wymagane' })}
+                placeholder={t('firstName')}
+              />
+              <FormLabel style={{ color: 'red' }}>{errors.firstName?.message}</FormLabel>
+            </Form.Group>
+            <Form.Group className="mb-4" controlId="formLastname">
+              <Form.Label>{ t('lastName') }</Form.Label>
+              <Form.Control
+                type="name"
+                {...register(
+                  'lastName',
+                  { required: 'Nazwisko jest wymagane' },
+                )}
+                placeholder={t('lastName')}
+              />
+              <FormLabel style={{ color: 'red' }}>{errors.lastName?.message}</FormLabel>
+            </Form.Group>
+            <Form.Group className="mb-4" controlId="formLastname">
+              <Form.Label>{ t('spec') }</Form.Label>
+              <Form.Control
+                type="name"
+                {...register('spec', { required: 'Specjalizacja jest wymagana' })}
+                placeholder={t('spec')}
+              />
+              <FormLabel style={{ color: 'red' }}>{errors.spec?.message}</FormLabel>
+            </Form.Group>
+            <Button variant="primary" type="submit">{ t('addDoctor') }</Button>
+          </Form>
+        </div>
       </div>
-      <div>
-        <legend>{ t('lastName') }</legend>
-        <input {...register('lastName', { required: 'Nazwisko jest wymagane' })} placeholder={t('lastName')} />
-        <p style={{ color: 'red' }}>{errors.lastName?.message}</p>
-      </div>
-      <div>
-        <legend>{ t('spec') }</legend>
-        <input {...register('spec', { required: 'Specjalizacja jest wymagana' })} placeholder={t('spec')} />
-        <p style={{ color: 'red' }}>{errors.spec?.message}</p>
-      </div>
-      <button type="submit">{ t('addDoctor') }</button>
-    </form>
+    </main>
   );
 }
 

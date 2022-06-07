@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 import { useTranslation } from 'react-i18next';
 import IDoctorsDate from '../../types/IDoctorsDate';
 
@@ -11,19 +12,17 @@ const DoctorsDate = ({ doctorsDate } : IDoctorsDateProps) => {
   const { t } = useTranslation();
 
   return (
-    <div style={{ padding: '1rem 0' }}>
-      {doctorsDate.date}
-      {' '}
-      {doctorsDate.startHour}
-      {' '}
-      -
-      {' '}
-      {doctorsDate.endHour}
-      {' '}
-      <button type="submit">{ t('edit') }</button>
-      {' '}
-      <button type="submit">{ t('delete') }</button>
-    </div>
+    <tr>
+      <td>{doctorsDate.date}</td>
+      <td>{doctorsDate.startHour}</td>
+      <td>{doctorsDate.endHour}</td>
+      <td>
+        <Button variant="primary" type="button">{ t('edit') }</Button>
+      </td>
+      <td>
+        <Button variant="primary" type="button">{ t('delete') }</Button>
+      </td>
+    </tr>
   );
 }
 

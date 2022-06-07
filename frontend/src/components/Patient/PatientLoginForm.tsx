@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import FormLabel from 'react-bootstrap/FormLabel';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -40,19 +43,38 @@ const PatientLoginForm = () => {
         !
       </p>
       )}
-      <form onSubmit={handleSubmit(onLogin)}>
-        <div>
-          <legend>{ t('firstName') }</legend>
-          <input {...register('firstName', { required: 'Imie jest wymagane' })} placeholder={t('firstName')} />
-          <p style={{ color: 'red' }}>{errors.firstName?.message}</p>
+      <main role="main" className="containter">
+        <div className="row">
+          <div className="col-md-3">
+            <Form onSubmit={handleSubmit(onLogin)}>
+              <Form.Group className="mb-4" controlId="formName">
+                <Form.Label>{ t('firstName') }</Form.Label>
+                <Form.Control
+                  type="name"
+                  {...register('firstName', { required: 'Imie jest wymagane' })}
+                  placeholder={t('firstName')}
+                />
+                <FormLabel style={{ color: 'red' }}>{errors.firstName?.message}</FormLabel>
+              </Form.Group>
+              <Form.Group className="mb-4" controlId="formLastname">
+                <Form.Label>{ t('lastName') }</Form.Label>
+                <Form.Control
+                  type="name"
+                  {...register(
+                    'lastName',
+                    { required: 'Nazwisko jest wymagane' },
+                  )}
+                  placeholder={t('lastName')}
+                />
+                <FormLabel style={{ color: 'red' }}>{errors.lastName?.message}</FormLabel>
+              </Form.Group>
+              <Button variant="primary" type="submit">{ t('login') }</Button>
+              {' '}
+              <Button variant="primary" type="button" href="/registerpatient">{ t('register') }</Button>
+            </Form>
+          </div>
         </div>
-        <div>
-          <legend>{ t('lastName') }</legend>
-          <input {...register('lastName', { required: 'Nazwisko jest wymagane' })} placeholder={t('lastName')} />
-          <p style={{ color: 'red' }}>{errors.lastName?.message}</p>
-        </div>
-        <button type="submit">{ t('login') }</button>
-      </form>
+      </main>
     </>
   );
 }

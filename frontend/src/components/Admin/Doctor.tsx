@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
 import { useTranslation } from 'react-i18next';
 import { Outlet, Link, useParams } from 'react-router-dom';
 import api from '../../services/backend';
@@ -38,11 +39,11 @@ const Doctor = () => {
         {' '}
         {doctor?.spec}
       </h4>
-      <Link to="time">{ t('timeManagment') }</Link>
+      <Button variant="primary" href={`/doctors/${params.doctorId}/time`}>{ t('timeManagment') }</Button>
       {' '}
       |
       {' '}
-      <Link to="appointments">{ t('bookedAppointments') }</Link>
+      <Button variant="primary" href={`/doctors/${params.doctorId}/appointments`}>{ t('bookedAppointments') }</Button>
       <Outlet />
     </main>
   );
