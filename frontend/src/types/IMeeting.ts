@@ -1,10 +1,10 @@
 export default interface IMeeting {
   id: string;
-  firstName: string;
-  lastName: string;
+  doctorFirstName: string;
+  doctorLastName: string;
+  doctorSpec: string;
   startHour: string;
   endHour: string;
   date: string;
-  avilable: boolean;
-  login: string;
+  patientId: string;
 }
