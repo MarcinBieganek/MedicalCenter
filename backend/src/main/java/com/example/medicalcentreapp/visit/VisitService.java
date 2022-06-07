@@ -1,7 +1,5 @@
-package com.example.Medical_Centre_App.visit;
+package com.example.medicalcentreapp.visit;
 
-import com.example.Medical_Centre_App.doctor.Doctor;
-import com.example.Medical_Centre_App.patient.Patient;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

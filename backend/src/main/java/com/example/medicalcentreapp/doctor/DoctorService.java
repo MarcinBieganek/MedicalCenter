@@ -1,9 +1,6 @@
-package com.example.Medical_Centre_App.doctor;
+package com.example.medicalcentreapp.doctor;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.Arrays;

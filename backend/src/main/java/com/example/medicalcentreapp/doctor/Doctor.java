@@ -1,27 +1,33 @@
-package com.example.Medical_Centre_App.patient;
+package com.example.medicalcentreapp.doctor;
 
 import java.util.UUID;
 
-public class Patient {
+public class Doctor {
     private final String id;
     private final String firstName;
     private final String lastName;
+    private final String spec;
 
-    public Patient(String firstName, String lastName) {
+    public Doctor(String firstName, String lastName, String spec) {
         this.id = UUID.randomUUID().toString().replaceAll("-", "");
         this.firstName = firstName;
         this.lastName = lastName;
+        this.spec = spec;
     }
 
     public String getId() {
-        return this.id;
+        return id;
     }
 
     public String getFirstName() {
-        return this.firstName;
+        return firstName;
     }
 
     public String getLastName() {
-        return this.lastName;
+        return lastName;
+    }
+
+    public String getSpec() {
+        return spec;
     }
 }
