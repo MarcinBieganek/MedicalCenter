@@ -19,7 +19,7 @@ const App = () => {
         {' '}
         |
         {' '}
-        <Link to="/patient">{ t('patient') }</Link>
+        <Link to="/loginpatient">{ t('patient') }</Link>
       </nav>
     </div>
   );

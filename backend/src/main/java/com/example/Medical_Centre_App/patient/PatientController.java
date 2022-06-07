@@ -23,7 +23,8 @@ public class PatientController {
     }
 
     @RequestMapping(method= RequestMethod.POST, value="/patientadd")
-    public void addPatient(@RequestBody Patient patient) {
+    public Patient addPatient(@RequestBody Patient patient) {
         patientService.addPatient(patient);
+        return patient;
     }
 }

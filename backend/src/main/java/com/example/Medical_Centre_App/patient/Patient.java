@@ -1,12 +1,14 @@
 package com.example.Medical_Centre_App.patient;
 
+import java.util.UUID;
+
 public class Patient {
     private final String id;
     private final String firstName;
     private final String lastName;
 
-    public Patient(String id, String firstName, String lastName) {
-        this.id = id;
+    public Patient(String firstName, String lastName) {
+        this.id = UUID.randomUUID().toString().replaceAll("-", "");
         this.firstName = firstName;
         this.lastName = lastName;
     }

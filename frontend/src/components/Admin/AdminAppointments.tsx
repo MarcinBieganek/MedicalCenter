@@ -19,8 +19,8 @@ const AdminAppointments = () => {
         const bookedVisits = bookedVisitsResponse.data;
         const doctorBookedVisits = bookedVisits.filter((v) => v.doctorId === params.doctorId);
 
-        const patientsResponde = await api.get('/patients');
-        const patients = patientsResponde.data;
+        const patientsResponse = await api.get('/patients');
+        const patients = patientsResponse.data;
 
         const appointments = doctorBookedVisits.map((visit) => {
           const visitPatient = patients.find((p) => p.id === visit.patientId);

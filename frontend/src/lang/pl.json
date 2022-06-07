@@ -17,5 +17,9 @@
     "bookedAppointments": "Umówione wizyty",
     "add": "Dodaj",
     "edit": "Edytuj",
-    "delete": "Usuń"
+    "delete": "Usuń",
+    "login": "Zaloguj się",
+    "register": "Zarejestruj się",
+    "noPatient": "Nie ma pacjenta o takim imieniu i nazwisku",
+    "patientExists": "Pacjent o podanym imieniu i nazwisku już jest zarejestrowany"
 }

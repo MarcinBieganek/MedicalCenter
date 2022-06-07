@@ -17,6 +17,9 @@ import AdminTimeMenager from './components/Admin/AdminTimeMenager';
 import Doctor from './components/Admin/Doctor';
 import Doctors from './components/Admin/Doctors';
 import Patient from './components/Patient/Patient';
+import PatientLogin from './components/Patient/PatientLogin';
+import PatientRegister from './components/Patient/PatientRegister';
+import Patients from './components/Patient/Patients';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -36,7 +39,11 @@ root.render(
             <Route path="appointments" element={<AdminAppointments />} />
           </Route>
         </Route>
-        <Route path="patient" element={<Patient />} />
+        <Route path="loginpatient" element={<PatientLogin />} />
+        <Route path="registerpatient" element={<PatientRegister />} />
+        <Route path="patients" element={<Patients />}>
+          <Route path=":patientId" element={<Patient />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
