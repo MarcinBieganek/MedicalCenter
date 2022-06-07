@@ -1,4 +1,4 @@
-package com.example.Medical_Centre_App.patient;
+package com.example.medicalcentreapp.patient;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

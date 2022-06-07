@@ -1,4 +1,4 @@
-package com.example.Medical_Centre_App;
+package com.example.medicalcentreapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

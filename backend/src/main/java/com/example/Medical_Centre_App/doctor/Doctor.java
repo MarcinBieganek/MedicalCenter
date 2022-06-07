@@ -1,4 +1,4 @@
-package com.example.Medical_Centre_App.doctor;
+package com.example.medicalcentreapp.doctor;
 
 import java.util.UUID;
 

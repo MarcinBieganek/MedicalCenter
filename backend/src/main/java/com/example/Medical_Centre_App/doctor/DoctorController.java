@@ -1,4 +1,4 @@
-package com.example.Medical_Centre_App.doctor;
+package com.example.medicalcentreapp.doctor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package com.example.Medical_Centre_App.visit;
+package com.example.medicalcentreapp.visit;
 
 import com.example.Medical_Centre_App.patient.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
