@@ -17,13 +17,8 @@ public class VisitService {
     List<Visit> unbookedVisits;
 
     public VisitService() {
-        doctorId = "226f834076704602803768e375db6db4";
-        visit1 = new Visit(doctorId, "10:00", "10:15", "11-05-2020", Boolean.FALSE);
-        visit2 = new Visit(doctorId, "14:00", "14:30", "12-05-2020", Boolean.TRUE);
-        visit2.setPatientId("1");
-        visit3 = new Visit(doctorId, "16:20", "16:30", "11-05-2020", Boolean.FALSE);
-        bookedVisits = new ArrayList<>(Arrays.asList(visit2));
-        unbookedVisits = new ArrayList<>(Arrays.asList(visit1, visit3));
+        bookedVisits = new ArrayList<>();
+        unbookedVisits = new ArrayList<>();
     }
 
     public Visit getVisitById(String id) {

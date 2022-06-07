@@ -17,7 +17,7 @@ public class PatientService {
 
     public Patient getPatientById(String id) {
         for (Patient patient : patients) {
-            if (patient.getId() == id) {
+            if (patient.getId().equals(id)) {
                 return patient;
             }
         }
