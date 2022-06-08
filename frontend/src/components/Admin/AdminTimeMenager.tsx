@@ -16,7 +16,7 @@ const AdminTimeMenager = () => {
   useEffect(() => {
     const getDoctorsDates = async () => {
       try {
-        const unbookedVisitsResponse = await api.get('/unbookedvisits');
+        const unbookedVisitsResponse = await api.get('/visits/notbooked');
         const unbookedVisits = unbookedVisitsResponse.data;
         const doctorBookedVisits = unbookedVisits.filter((v) => v.doctorId === params.doctorId);
 

@@ -12,37 +12,37 @@ public class VisitController {
     @Autowired
     private VisitService visitService;
 
-    @RequestMapping("/visit/{id}")
+    @GetMapping("/visits/{id}")
     public Visit getVisitById(@PathVariable String id) {
         return visitService.getVisitById(id);
     }
 
-    @GetMapping("/bookedvisits")
-    public List<Visit> getAllBookedVisits() {
-        return visitService.getAllBookedVisits();
-    }
-
-    @GetMapping("/unbookedvisits")
-    public List<Visit> getAllUnbookedVisits() {
-        return visitService.getAllUnbookedVisits();
-    }
-
-    @RequestMapping(method=RequestMethod.POST, value="/visitadd")
+    @PostMapping("/visits")
     public void addVisit(@RequestBody Visit visit) {
         visitService.addVisit(visit);
     }
 
-    @DeleteMapping("/visitdelete/{id}")
+    @GetMapping("/visits/booked")
+    public List<Visit> getAllBookedVisits() {
+        return visitService.getAllBookedVisits();
+    }
+
+    @GetMapping("/visits/notbooked")
+    public List<Visit> getAllUnbookedVisits() {
+        return visitService.getAllUnbookedVisits();
+    }
+
+    @DeleteMapping("/visits/{id}")
     public void removeVisit(@PathVariable String id) {
         visitService.removeVisit(id);
     }
 
-    @RequestMapping(method=RequestMethod.PUT, value="/visitbook")
+    @PutMapping("/visits/booked")
     public void bookVisit(@RequestParam String visitId, @RequestParam String patientId) {
         visitService.bookVisit(visitId, patientId);
     }
 
-    @RequestMapping(method=RequestMethod.PUT, value="/visitunbook")
+    @PutMapping("/visits/notbooked")
     public void unBookVisit(@RequestParam String visitId) {
         visitService.unBookVisit(visitId);
     }

@@ -20,7 +20,7 @@ const AddDoctorForm = () => {
       spec: data.spec,
     }
     try {
-      const response = await api.post('/doctoradd', newDoctor);
+      const response = await api.post('/doctors', newDoctor);
       navigate('/admin');
     } catch (error) {
       console.log(`Error: ${error}`);

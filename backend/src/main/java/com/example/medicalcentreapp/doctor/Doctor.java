@@ -3,7 +3,7 @@ package com.example.medicalcentreapp.doctor;
 import java.util.UUID;
 
 public class Doctor {
-    private final String id;
+    private String id;
     private final String firstName;
     private final String lastName;
     private final String spec;

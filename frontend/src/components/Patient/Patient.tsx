@@ -17,7 +17,7 @@ const Patient = () => {
 
   const getPatient = async () => {
     try {
-      const response = await api.get(`/patient/${params.patientId}`);
+      const response = await api.get(`/patients/${params.patientId}`);
       setPatient(response.data);
     } catch (error) {
       console.log(error);
@@ -26,7 +26,7 @@ const Patient = () => {
 
   const getPatientVisits = async () => {
     try {
-      const bookedVisitsResponse = await api.get('/bookedvisits');
+      const bookedVisitsResponse = await api.get('/visits/booked');
       const bookedVisits = bookedVisitsResponse.data;
       const patientBookedVisits = bookedVisits.filter((v) => v.patientId === params.patientId);
 
@@ -55,7 +55,7 @@ const Patient = () => {
 
   const getUnbookedVisits = async () => {
     try {
-      const unbookedVisitsResponse = await api.get('/unbookedvisits');
+      const unbookedVisitsResponse = await api.get('/visits/notbooked');
       const unbookedVisits = unbookedVisitsResponse.data;
 
       const doctorsResponse = await api.get('/doctors');
@@ -83,7 +83,7 @@ const Patient = () => {
 
   const cancelMeeting = async (meeting: IMeeting) => {
     try {
-      await api.put('/visitunbook', null, { params: { visitId: meeting.id } });
+      await api.put('/visits/notbooked', null, { params: { visitId: meeting.id } });
 
       getPatientVisits();
       getUnbookedVisits();
@@ -94,7 +94,7 @@ const Patient = () => {
 
   const bookMeeting = async (meeting: IMeeting) => {
     try {
-      await api.put('/visitbook', null, { params: { visitId: meeting.id, patientId: params.patientId } });
+      await api.put('/visits/booked', null, { params: { visitId: meeting.id, patientId: params.patientId } });
 
       getPatientVisits();
       getUnbookedVisits();

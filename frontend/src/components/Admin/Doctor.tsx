@@ -13,7 +13,7 @@ const Doctor = () => {
   useEffect(() => {
     const getDoctor = async () => {
       try {
-        const response = await api.get(`/doctor/${params.doctorId}`);
+        const response = await api.get(`/doctors/${params.doctorId}`);
         setDoctor(response.data);
       } catch (error) {
         console.log(error);

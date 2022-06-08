@@ -35,7 +35,7 @@ const PatientRegisterForm = () => {
           lastName: data.lastName,
         }
 
-        const addPatientResponse = await api.post('/patientadd', newPatient);
+        const addPatientResponse = await api.post('/patients', newPatient);
         const addedPatient = addPatientResponse.data;
         navigate(`/patients/${addedPatient.id}`);
       }

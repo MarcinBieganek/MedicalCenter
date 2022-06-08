@@ -15,7 +15,7 @@ const AdminAppointments = () => {
   useEffect(() => {
     const getAppointments = async () => {
       try {
-        const bookedVisitsResponse = await api.get('/bookedvisits');
+        const bookedVisitsResponse = await api.get('/visits/booked');
         const bookedVisits = bookedVisitsResponse.data;
         const doctorBookedVisits = bookedVisits.filter((v) => v.doctorId === params.doctorId);
 

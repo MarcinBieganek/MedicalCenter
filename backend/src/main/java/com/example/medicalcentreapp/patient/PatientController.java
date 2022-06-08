@@ -12,7 +12,7 @@ public class PatientController {
     @Autowired
     private PatientService patientService;
 
-    @RequestMapping("/patient/{id}")
+    @GetMapping("/patients/{id}")
     public Patient getPatientById(@PathVariable String id) {
         return patientService.getPatientById(id);
     }
@@ -22,7 +22,7 @@ public class PatientController {
         return patientService.getAllPatients();
     }
 
-    @RequestMapping(method= RequestMethod.POST, value="/patientadd")
+    @PostMapping("/patients")
     public Patient addPatient(@RequestBody Patient patient) {
         patientService.addPatient(patient);
         return patient;
