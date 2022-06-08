@@ -36,7 +36,7 @@ const AddDoctorForm = () => {
               <Form.Label>{ t('firstName') }</Form.Label>
               <Form.Control
                 type="name"
-                {...register('firstName', { required: 'Imie jest wymagane' })}
+                {...register('firstName', { required: t('firstNameRequired') })}
                 placeholder={t('firstName')}
               />
               <FormLabel style={{ color: 'red' }}>{errors.firstName?.message}</FormLabel>
@@ -47,7 +47,7 @@ const AddDoctorForm = () => {
                 type="name"
                 {...register(
                   'lastName',
-                  { required: 'Nazwisko jest wymagane' },
+                  { required: t('lastNameRequired') },
                 )}
                 placeholder={t('lastName')}
               />
@@ -57,7 +57,7 @@ const AddDoctorForm = () => {
               <Form.Label>{ t('spec') }</Form.Label>
               <Form.Control
                 type="name"
-                {...register('spec', { required: 'Specjalizacja jest wymagana' })}
+                {...register('spec', { required: t('specRequired') })}
                 placeholder={t('spec')}
               />
               <FormLabel style={{ color: 'red' }}>{errors.spec?.message}</FormLabel>

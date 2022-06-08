@@ -51,7 +51,7 @@ const PatientLoginForm = () => {
                 <Form.Label>{ t('firstName') }</Form.Label>
                 <Form.Control
                   type="name"
-                  {...register('firstName', { required: 'Imie jest wymagane' })}
+                  {...register('firstName', { required: t('firstNameRequired') })}
                   placeholder={t('firstName')}
                 />
                 <FormLabel style={{ color: 'red' }}>{errors.firstName?.message}</FormLabel>
@@ -62,7 +62,7 @@ const PatientLoginForm = () => {
                   type="name"
                   {...register(
                     'lastName',
-                    { required: 'Nazwisko jest wymagane' },
+                    { required: t('lastNameRequired') },
                   )}
                   placeholder={t('lastName')}
                 />
