@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 import { useTranslation } from 'react-i18next';
 import IAppointment from '../../types/IAppointment';
 
@@ -11,21 +12,16 @@ const Appointment = ({ appointment } : IAppointmentProps) => {
   const { t } = useTranslation();
 
   return (
-    <div style={{ padding: '1rem 0' }}>
-      {appointment.date}
-      {' '}
-      {appointment.startHour}
-      {' '}
-      -
-      {' '}
-      {appointment.endHour}
-      {' '}
-      {appointment.patientFirstName}
-      {' '}
-      {appointment.patientLastName}
-      {' '}
-      <button type="submit">{ t('cancel') }</button>
-    </div>
+    <tr>
+      <td>{appointment.date}</td>
+      <td>{appointment.startHour}</td>
+      <td>{appointment.endHour}</td>
+      <td>{appointment.patientFirstName}</td>
+      <td>{appointment.patientLastName}</td>
+      <td>
+        <Button variant="primary" type="submit">{ t('cancel') }</Button>
+      </td>
+    </tr>
   );
 }
 
