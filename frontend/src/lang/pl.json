@@ -25,5 +25,13 @@
     "register": "Zarejestruj się",
     "noPatient": "Nie ma pacjenta o takim imieniu i nazwisku",
     "patientExists": "Pacjent o podanym imieniu i nazwisku już jest zarejestrowany",
-    "hey": "Cześć"
+    "hey": "Cześć",
+    "date": "Data",
+    "hour from": "Godzina od",
+    "hour to": "Godzina do",
+    "patient first name": "Imię pacjenta",
+    "patient last name": "Nazwisko pacjenta",
+    "doctor first name": "Imię lekarza",
+    "doctor last name": "Nazwisko lekarza",
+    "book/cancel": "Zarezerwuj/Odwołaj"
 }
