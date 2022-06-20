@@ -6,9 +6,10 @@ import DoctorsDate from './DoctorsDate';
 
 interface IDoctorsDatesListProps {
   doctorsDatesList: IDoctorsDate[];
+  deleteItem: (doctorsDate: IDoctorsDate) => void;
 }
 
-const DoctorsDatesList = ({ doctorsDatesList } : IDoctorsDatesListProps) => {
+const DoctorsDatesList = ({ doctorsDatesList, deleteItem } : IDoctorsDatesListProps) => {
   const { t } = useTranslation();
 
   return (
@@ -25,7 +26,7 @@ const DoctorsDatesList = ({ doctorsDatesList } : IDoctorsDatesListProps) => {
         </thead>
         <tbody>
           {doctorsDatesList.map((date, index) => (
-            <DoctorsDate doctorsDate={date} index={index} />
+            <DoctorsDate doctorsDate={date} index={index} deleteItem={deleteItem} />
           ))}
         </tbody>
       </Table>

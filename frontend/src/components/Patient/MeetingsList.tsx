@@ -5,8 +5,8 @@ import IMeeting from '../../types/IMeeting';
 import Meeting from './Meeting';
 
 interface IMeetingsListProps {
-    meetingsList: IMeeting[];
-    deleteItem: (meeting: IMeeting) => void;
+  meetingsList: IMeeting[];
+  deleteItem: (meeting: IMeeting) => void;
 }
 
 const MeetingsList = ({ meetingsList, deleteItem } : IMeetingsListProps) => {

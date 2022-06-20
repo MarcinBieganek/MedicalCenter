@@ -5,9 +5,9 @@ import { useParams } from 'react-router-dom';
 import IMeeting from '../../types/IMeeting';
 
 interface IMeetingProps {
-    meeting: IMeeting;
-    index: number;
-    deleteItem: (meeting: IMeeting) => void;
+  meeting: IMeeting;
+  index: number;
+  deleteItem: (meeting: IMeeting) => void;
 }
 
 const Meeting = ({ meeting, deleteItem } : IMeetingProps) => {

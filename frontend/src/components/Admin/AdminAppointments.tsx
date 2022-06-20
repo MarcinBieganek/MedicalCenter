@@ -12,41 +12,51 @@ const AdminAppointments = () => {
 
   const [appointmentsList, setAppointmentsList] = useState<IAppointment[]>([]);
 
+  const getAppointments = async () => {
+    try {
+      const bookedVisitsResponse = await api.get('/visits/booked');
+      const bookedVisits = bookedVisitsResponse.data;
+      const doctorBookedVisits = bookedVisits.filter((v) => v.doctorId === params.doctorId);
+
+      const patientsResponse = await api.get('/patients');
+      const patients = patientsResponse.data;
+
+      const appointments = doctorBookedVisits.map((visit) => {
+        const visitPatient = patients.find((p) => p.id === visit.patientId);
+        return {
+          id: visit.id,
+          patientFirstName: visitPatient.firstName,
+          patientLastName: visitPatient.lastName,
+          startHour: visit.startTime,
+          endHour: visit.endTime,
+          date: visit.day,
+        }
+      });
+
+      setAppointmentsList(appointments);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const cancelAppointment = async (appointment: IAppointment) => {
+    try {
+      await api.put('/visits/notbooked', null, { params: { visitId: appointment.id } });
+
+      getAppointments();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
-    const getAppointments = async () => {
-      try {
-        const bookedVisitsResponse = await api.get('/visits/booked');
-        const bookedVisits = bookedVisitsResponse.data;
-        const doctorBookedVisits = bookedVisits.filter((v) => v.doctorId === params.doctorId);
-
-        const patientsResponse = await api.get('/patients');
-        const patients = patientsResponse.data;
-
-        const appointments = doctorBookedVisits.map((visit) => {
-          const visitPatient = patients.find((p) => p.id === visit.patientId);
-          return {
-            id: visit.id,
-            patientFirstName: visitPatient.firstName,
-            patientLastName: visitPatient.lastName,
-            startHour: visit.startTime,
-            endHour: visit.endTime,
-            date: visit.day,
-          }
-        });
-
-        setAppointmentsList(appointments);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     getAppointments();
   }, [params.doctorId]);
 
   return (
     <main style={{ padding: '1rem 0' }}>
       <h3>{ t('bookedAppointments') }</h3>
-      <AppointmentsList appointmentsList={appointmentsList} />
+      <AppointmentsList appointmentsList={appointmentsList} deleteItem={cancelAppointment} />
     </main>
   );
 }

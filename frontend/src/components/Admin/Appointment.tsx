@@ -4,11 +4,12 @@ import { useTranslation } from 'react-i18next';
 import IAppointment from '../../types/IAppointment';
 
 interface IAppointmentProps {
-    appointment: IAppointment;
-    index: number;
+  appointment: IAppointment;
+  index: number;
+  deleteItem: (appointment: IAppointment) => void;
 }
 
-const Appointment = ({ appointment } : IAppointmentProps) => {
+const Appointment = ({ appointment, deleteItem } : IAppointmentProps) => {
   const { t } = useTranslation();
 
   return (
@@ -19,7 +20,7 @@ const Appointment = ({ appointment } : IAppointmentProps) => {
       <td>{appointment.patientFirstName}</td>
       <td>{appointment.patientLastName}</td>
       <td>
-        <Button variant="primary" type="submit">{ t('cancel') }</Button>
+        <Button variant="primary" type="submit" onClick={() => deleteItem(appointment)}>{ t('cancel') }</Button>
       </td>
     </tr>
   );
