@@ -6,9 +6,10 @@ import Appointment from './Appointment';
 
 interface IAppointmentsListProps {
   appointmentsList: IAppointment[];
+  deleteItem: (appointment: IAppointment) => void;
 }
 
-const AppointmentsList = ({ appointmentsList } : IAppointmentsListProps) => {
+const AppointmentsList = ({ appointmentsList, deleteItem } : IAppointmentsListProps) => {
   const { t } = useTranslation();
 
   return (
@@ -26,7 +27,7 @@ const AppointmentsList = ({ appointmentsList } : IAppointmentsListProps) => {
         </thead>
         <tbody>
           {appointmentsList.map((appointment, index) => (
-            <Appointment appointment={appointment} index={index} />
+            <Appointment appointment={appointment} index={index} deleteItem={deleteItem} />
           ))}
         </tbody>
       </Table>
