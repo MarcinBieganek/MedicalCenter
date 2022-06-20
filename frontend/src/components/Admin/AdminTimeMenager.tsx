@@ -13,26 +13,36 @@ const AdminTimeMenager = () => {
 
   const [doctorsDateList, setDoctorsDateList] = useState<IDoctorsDate[]>([]);
 
+  const getDoctorsDates = async () => {
+    try {
+      const unbookedVisitsResponse = await api.get('/visits/notbooked');
+      const unbookedVisits = unbookedVisitsResponse.data;
+      const doctorBookedVisits = unbookedVisits.filter((v) => v.doctorId === params.doctorId);
+
+      const doctorsDates = doctorBookedVisits.map((visit) => ({
+        id: visit.id,
+        startHour: visit.startTime,
+        endHour: visit.endTime,
+        date: visit.day,
+      }));
+
+      setDoctorsDateList(doctorsDates);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteDoctorsDate = async (doctorsDate: IDoctorsDate) => {
+    try {
+      await api.delete(`/visits/${doctorsDate.id}`);
+
+      getDoctorsDates();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
-    const getDoctorsDates = async () => {
-      try {
-        const unbookedVisitsResponse = await api.get('/visits/notbooked');
-        const unbookedVisits = unbookedVisitsResponse.data;
-        const doctorBookedVisits = unbookedVisits.filter((v) => v.doctorId === params.doctorId);
-
-        const doctorsDates = doctorBookedVisits.map((visit) => ({
-          id: visit.id,
-          startHour: visit.startTime,
-          endHour: visit.endTime,
-          date: visit.day,
-        }));
-
-        setDoctorsDateList(doctorsDates);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     getDoctorsDates();
   }, [params.doctorId]);
 
@@ -40,7 +50,7 @@ const AdminTimeMenager = () => {
     <main style={{ padding: '1rem 0' }}>
       <h3>{ t('timeManagment') }</h3>
       <Button variant="primary" type="submit">{ t('add') }</Button>
-      <DoctorsDatesList doctorsDatesList={doctorsDateList} />
+      <DoctorsDatesList doctorsDatesList={doctorsDateList} deleteItem={deleteDoctorsDate} />
     </main>
   );
 }
