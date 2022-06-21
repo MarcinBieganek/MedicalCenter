@@ -6,11 +6,18 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.medicalcentreapp.MedicalCentreAppApplication.getConnection;
+import static com.example.Medical_Centre_App.MedicalCentreAppApplication.getConnection;
+import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Service
 public class PatientService {
     long counter = 4;
+
+    Patient patient1 = new Patient("99047898452", "Pierwszy", "Pacjent");
+    Patient patient2 = new Patient("99047898457", "Drugi", "Pacjent");
+    Patient patient3 = new Patient("99047898458", "Trzeci", "Pacjent");
+    //List<Patient> patients = new ArrayList<>(Arrays.asList(patient1, patient2, patient3));
+
 
     public Patient getPatientByPesel(String pesel) {
         Patient p = new Patient();
@@ -63,15 +70,18 @@ public class PatientService {
     }
 
     public void addPatient(Patient patient) {
-        try (Connection connection = getConnection()) {
-            PreparedStatement st = connection.prepareStatement(" INSERT INTO \"Patient\" (\"FirstName\", \"LastName\", " +
+        Patient checkedPatient = getPatientByPesel(patient.getPesel());
+        if(!isEmpty(checkedPatient)) {
+            try (Connection connection = getConnection()) {
+                PreparedStatement st = connection.prepareStatement(" INSERT INTO \"Patient\" (\"FirstName\", \"LastName\", " +
                         "pesel) VALUES (?, ?, ?) ");
-            st.setString(1, patient.getFirstName());
-            st.setString(2, patient.getLastName());
-            st.setString(3, patient.getPesel());
-            st.executeUpdate();
-    } catch (SQLException e) {
-            e.printStackTrace();
+                st.setString(1, patient.getFirstName());
+                st.setString(2, patient.getLastName());
+                st.setString(3, patient.getPesel());
+                st.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

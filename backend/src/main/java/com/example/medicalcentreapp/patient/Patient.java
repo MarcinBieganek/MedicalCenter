@@ -32,4 +32,5 @@ public class Patient {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
 }
