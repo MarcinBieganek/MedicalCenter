@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.example.Medical_Centre_App.MedicalCentreAppApplication.getConnection;
+import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Service
 public class DoctorService {
@@ -74,16 +75,19 @@ public class DoctorService {
     }
 
     public void addDoctor(Doctor doctor) {
-        try (Connection connection = getConnection()) {
-            PreparedStatement st = connection.prepareStatement(" INSERT INTO \"Doctor\" (\"FirstName\", \"LastName\", " +
-                    " \"Speciality\", pesel) VALUES (?, ?, ?, ?) ");
-            st.setString(1, doctor.getFirstName());
-            st.setString(2, doctor.getLastName());
-            st.setString(3, doctor.getSpec());
-            st.setString(4, doctor.getPesel());
-            st.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        Doctor checkedDoctor = getDoctorByPesel(doctor.getPesel());
+        if(!isEmpty(checkedDoctor)) {
+            try (Connection connection = getConnection()) {
+                PreparedStatement st = connection.prepareStatement(" INSERT INTO \"Doctor\" (\"FirstName\", \"LastName\", " +
+                        " \"Speciality\", pesel) VALUES (?, ?, ?, ?) ");
+                st.setString(1, doctor.getFirstName());
+                st.setString(2, doctor.getLastName());
+                st.setString(3, doctor.getSpec());
+                st.setString(4, doctor.getPesel());
+                st.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -101,11 +105,12 @@ public class DoctorService {
     public void editDoctor(Doctor doctor) {
         try (Connection connection = getConnection()) {
             PreparedStatement st = connection.prepareStatement(" UPDATE \"Doctor\" SET \"PESEL\" = ? , " +
-                            " \"FirstName\" = ? , \"SecondName\" = ? , \"Spec\" = ? ");
+                            " \"FirstName\" = ? , \"SecondName\" = ? , \"Spec\" = ? WHERE \"PESEL\" = ? ");
             st.setString(1, doctor.getPesel());
             st.setString(2, doctor.getFirstName());
             st.setString(3, doctor.getSpec());
             st.setString(4, doctor.getLastName());
+            st.setString(5, doctor.getPesel());
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
