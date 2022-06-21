@@ -27,7 +27,7 @@ const PatientRegisterForm = () => {
 
       const addPatientResponse = await api.post('/patientadd', newPatient);
       const addedPatient = addPatientResponse.data;
-      navigate(`/patient/${addedPatient.pesel}`);
+      navigate(`/patients/${addedPatient.pesel}`);
     } catch (error) {
       const err = error as ApiError;
       if (err.response?.status === 409) {

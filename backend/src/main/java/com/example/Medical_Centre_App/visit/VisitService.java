@@ -132,11 +132,12 @@ public class VisitService {
         }
     }
 
-    public void bookVisit(Integer visitId) {
+    public void bookVisit(Integer visitId, String patientPesel) {
         try (Connection connection = getConnection()) {
-            PreparedStatement st = connection.prepareStatement(" UPDATE \"Visit\" SET \"isBooked\" = ? WHERE id = ? ");
+            PreparedStatement st = connection.prepareStatement(" UPDATE \"Visit\" SET \"isBooked\" = ?, \"patientPesel\" = ? WHERE id = ? ");
             st.setBoolean(1, true);
-            st.setInt(2, visitId);
+            st.setString(2, patientPesel);
+            st.setInt(3, visitId);
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -145,7 +146,7 @@ public class VisitService {
 
     public void unbookVisit(Integer visitId) {
         try (Connection connection = getConnection()) {
-            PreparedStatement st = connection.prepareStatement(" UPDATE \"Visit\" SET \"isBooked\" = ? WHERE id = ? ");
+            PreparedStatement st = connection.prepareStatement(" UPDATE \"Visit\" SET \"isBooked\" = ?, , \"patientPesel\" = null WHERE id = ? ");
             st.setBoolean(1, false);
             st.setInt(2, visitId);
             st.executeUpdate();

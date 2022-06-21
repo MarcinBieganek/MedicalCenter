@@ -20,23 +20,18 @@ const Patient = () => {
       const response = await api.get(`/patient/${params.patientPesel}`);
       setPatient(response.data);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
   const getPatientVisits = async () => {
     try {
-      const bookedVisitsResponse = await api.get('/bookedvisits');
-      const bookedVisits = bookedVisitsResponse.data;
-      const patientBookedVisits = bookedVisits.filter(
-        (v) => v.patientPesel === params.patientPesel,
-      );
+      const patientBookedVisitsResponse = await api.get('/visits', { params: { patientPesel: params.patientPesel } });
+      const patientBookedVisits = patientBookedVisitsResponse.data;
 
-      const doctorsResponse = await api.get('/doctors');
-      const doctors = doctorsResponse.data;
-
-      const patientVisits = patientBookedVisits.map((visit) => {
-        const visitDoctor = doctors.find((d) => d.pesel === visit.doctorPesel);
+      const patientVisits = patientBookedVisits.map(async (visit) => {
+        const getDoctorResponse = await api.get(`/doctor/${visit.doctorPesel}`);
+        const visitDoctor = getDoctorResponse.data;
         return {
           id: visit.id,
           doctorFirstName: visitDoctor.firstName,
@@ -57,14 +52,12 @@ const Patient = () => {
 
   const getUnbookedVisits = async () => {
     try {
-      const unbookedVisitsResponse = await api.get('/unbookedvisits');
+      const unbookedVisitsResponse = await api.get('/visits', { params: { isBooked: false } });
       const unbookedVisits = unbookedVisitsResponse.data;
 
-      const doctorsResponse = await api.get('/doctors');
-      const doctors = doctorsResponse.data;
-
-      const availableMeetings = unbookedVisits.map((visit) => {
-        const visitDoctor = doctors.find((d) => d.pesel === visit.doctorPesel);
+      const availableMeetings = unbookedVisits.map(async (visit) => {
+        const getDoctorResponse = await api.get(`/doctor/${visit.doctorPesel}`);
+        const visitDoctor = getDoctorResponse.data;
         return {
           id: visit.id,
           doctorFirstName: visitDoctor.firstName,
@@ -96,7 +89,7 @@ const Patient = () => {
 
   const bookMeeting = async (meeting: IMeeting) => {
     try {
-      await api.put('/visitbook', null, { params: { visitId: meeting.id, patientId: params.patientId } });
+      await api.put('/visitbook', null, { params: { visitId: meeting.id, patientPesel: params.patientPesel } });
 
       getPatientVisits();
       getUnbookedVisits();
