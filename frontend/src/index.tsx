@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './lang/i18n';
 
 import App from './App';
+import AddAppointment from './components/Admin/AddAppointment';
 import AddDoctor from './components/Admin/AddDoctor';
 import Admin from './components/Admin/Admin';
 import AdminAppointments from './components/Admin/AdminAppointments';
@@ -36,6 +37,7 @@ root.render(
         <Route path="doctors" element={<Doctors />}>
           <Route path=":doctorPesel" element={<Doctor />}>
             <Route path="time" element={<AdminTimeMenager />} />
+            <Route path="addappointment" element={<AddAppointment />} />
             <Route path="appointments" element={<AdminAppointments />} />
           </Route>
         </Route>

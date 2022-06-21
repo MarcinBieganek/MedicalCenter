@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import { useTranslation } from 'react-i18next';
-import { Outlet, Link, useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import api from '../../services/backend';
 import IDoctor from '../../types/IDoctor';
 

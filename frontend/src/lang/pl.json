@@ -36,5 +36,7 @@
     "patient last name": "Nazwisko pacjenta",
     "doctor first name": "Imię lekarza",
     "doctor last name": "Nazwisko lekarza",
-    "book/cancel": "Zarezerwuj/Odwołaj"
+    "book/cancel": "Zarezerwuj/Odwołaj",
+    "AppointmentAdding": "Dodawanie wizyty",
+    "AddAppointment": "Dodaj wizytę"
 }
