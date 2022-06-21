@@ -1,6 +1,4 @@
-package com.example.Medical_Centre_App.doctor;
-
-import java.util.UUID;
+package com.example.medicalcentreapp.doctor;
 
 public class Doctor {
     private String pesel;

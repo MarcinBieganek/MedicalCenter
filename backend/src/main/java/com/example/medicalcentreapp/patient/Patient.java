@@ -1,6 +1,4 @@
-package com.example.Medical_Centre_App.patient;
-
-import java.sql.ResultSet;
+package com.example.medicalcentreapp.patient;
 
 public class Patient {
     private String pesel;

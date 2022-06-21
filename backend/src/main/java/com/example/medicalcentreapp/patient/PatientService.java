@@ -1,25 +1,16 @@
-package com.example.Medical_Centre_App.patient;
+package com.example.medicalcentreapp.patient;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import static com.example.Medical_Centre_App.MedicalCentreAppApplication.getConnection;
+import static com.example.medicalcentreapp.MedicalCentreAppApplication.getConnection;
 
 @Service
 public class PatientService {
     long counter = 4;
-
-    Patient patient1 = new Patient("99047898452", "Pierwszy", "Pacjent");
-    Patient patient2 = new Patient("99047898457", "Drugi", "Pacjent");
-    Patient patient3 = new Patient("99047898458", "Trzeci", "Pacjent");
-    //List<Patient> patients = new ArrayList<>(Arrays.asList(patient1, patient2, patient3));
 
     public Patient getPatientByPesel(String pesel) {
         Patient p = new Patient();

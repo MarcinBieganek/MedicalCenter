@@ -1,17 +1,12 @@
-package com.example.Medical_Centre_App.doctor;
+package com.example.medicalcentreapp.doctor;
 
-import com.example.Medical_Centre_App.patient.Patient;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import static com.example.Medical_Centre_App.MedicalCentreAppApplication.getConnection;
+import static com.example.medicalcentreapp.MedicalCentreAppApplication.getConnection;
 
 @Service
 public class DoctorService {
@@ -96,7 +91,6 @@ public class DoctorService {
             e.printStackTrace();
         }
     }
-
 
     public void editDoctor(Doctor doctor) {
         try (Connection connection = getConnection()) {
