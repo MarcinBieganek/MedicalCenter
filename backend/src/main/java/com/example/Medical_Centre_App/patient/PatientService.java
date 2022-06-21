@@ -65,9 +65,9 @@ public class PatientService {
         return patients;
     }
 
-    public void addPatient(Patient patient) {
+    public Patient addPatient(Patient patient) {
         Patient checkedPatient = getPatientByPesel(patient.getPesel());
-        if(!isEmpty(checkedPatient)) {
+        if(isEmpty(checkedPatient)) {
             try (Connection connection = getConnection()) {
                 PreparedStatement st = connection.prepareStatement(" INSERT INTO \"Patient\" (\"FirstName\", \"LastName\", " +
                         "pesel) VALUES (?, ?, ?) ");
@@ -78,6 +78,9 @@ public class PatientService {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+            return patient;
+        } else {
+            return null;
         }
     }
 }

@@ -5,46 +5,36 @@ import FormLabel from 'react-bootstrap/FormLabel';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import api from '../../services/backend';
+import api, { ApiError } from '../../services/backend';
 import validatePeselChecksum from '../../services/validation';
 
 import IPatient from '../../types/IPatient';
 
 const PatientRegisterForm = () => {
   const { t } = useTranslation();
-  const [patientExists, setPatientExists] = useState<boolean>(false);
+  const [patientExists, setPatientExists] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm<IPatient>();
   const navigate = useNavigate();
 
   const onAdd: SubmitHandler<IPatient> = async (data) => {
     alert(JSON.stringify(data));
     try {
-      const patientsResponse = await api.get('/patients');
-      const patients = patientsResponse.data;
+      const newPatient = {
+        pesel: data.pesel,
+        firstName: data.firstName,
+        lastName: data.lastName,
+      }
 
-      console.log(patients);
-
-      const findPatient = patients.find(
-        (p: IPatient) => p.pesel === data.pesel
-          && p.firstName === data.firstName
-          && p.lastName === data.lastName,
-      );
-
-      if (findPatient) {
+      const addPatientResponse = await api.post('/patientadd', newPatient);
+      const addedPatient = addPatientResponse.data;
+      navigate(`/patient/${addedPatient.pesel}`);
+    } catch (error) {
+      const err = error as ApiError;
+      if (err.response?.status === 409) {
         setPatientExists(true);
       } else {
-        const newPatient = {
-          pesel: data.pesel,
-          firstName: data.firstName,
-          lastName: data.lastName,
-        }
-
-        const addPatientResponse = await api.post('/patientadd', newPatient);
-        const addedPatient = addPatientResponse.data;
-        navigate(`/patients/${addedPatient.pesel}`);
+        // console.log(`Error: ${error}`);
       }
-    } catch (error) {
-      console.log(`Error: ${error}`);
     }
   };
 

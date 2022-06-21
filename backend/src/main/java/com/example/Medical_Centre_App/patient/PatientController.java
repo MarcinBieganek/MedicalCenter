@@ -29,7 +29,11 @@ public class PatientController {
     }
 
     @RequestMapping(method= RequestMethod.POST, value="/patientadd")
-    public void addPatient(@RequestBody Patient patient) {
-        patientService.addPatient(patient);
+    public ResponseEntity<Patient> addPatient(@RequestBody Patient patient) {
+        Patient addedPatient = patientService.addPatient(patient);
+        if (addedPatient == null) {
+            return new ResponseEntity<Patient>(HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<Patient>(addedPatient, HttpStatus.CREATED);
     }
 }

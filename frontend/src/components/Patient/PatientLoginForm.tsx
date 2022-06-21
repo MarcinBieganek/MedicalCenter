@@ -17,7 +17,6 @@ const PatientLoginForm = () => {
   const navigate = useNavigate();
 
   const onLogin: SubmitHandler<IPatient> = async (data) => {
-    alert(JSON.stringify(data));
     try {
       const patientResponse = await api.get(`/patient/${data.pesel}`);
       const patient = patientResponse.data;
@@ -28,7 +27,7 @@ const PatientLoginForm = () => {
       if (err.response?.status === 404) {
         setNoPatient(true);
       } else {
-        console.log(`Error: ${error}`);
+        // console.log(`Error: ${error}`);
       }
     }
   };
