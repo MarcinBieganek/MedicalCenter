@@ -1,6 +1,8 @@
 package com.example.Medical_Centre_App.patient;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,8 +15,12 @@ public class PatientController {
     private PatientService patientService;
 
     @RequestMapping("/patient/{pesel}")
-    public Patient getPatientByPesel(@PathVariable String pesel) {
-        return patientService.getPatientByPesel(pesel);
+    public ResponseEntity<Patient> getPatientByPesel(@PathVariable String pesel) {
+        Patient foundPatient = patientService.getPatientByPesel(pesel);
+        if (foundPatient == null) {
+            return new ResponseEntity<Patient>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Patient>(foundPatient, HttpStatus.OK);
     }
 
     @GetMapping("/patients")

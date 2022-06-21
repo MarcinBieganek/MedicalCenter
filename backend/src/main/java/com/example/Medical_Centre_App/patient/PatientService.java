@@ -20,7 +20,6 @@ public class PatientService {
 
 
     public Patient getPatientByPesel(String pesel) {
-        Patient p = new Patient();
         try (Connection connection = getConnection()) {
             String query = " SELECT * FROM \"Patient\" where pesel = ? ";
             PreparedStatement st = connection.prepareStatement(query);
@@ -30,10 +29,7 @@ public class PatientService {
                     String ps = resultSet.getString("PESEL");
                     String firstName = resultSet.getString("FirstName");
                     String lastName = resultSet.getString("LastName");
-                    p.setPesel(ps);
-                    p.setFirstName(firstName);
-                    p.setLastName(lastName);
-                    //p = new Patient(ps, firstName, lastName);
+                    return new Patient(ps, firstName, lastName);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -41,7 +37,7 @@ public class PatientService {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    return p;
+        return null;
     }
 
     public List<Patient> getAllPatients() {
