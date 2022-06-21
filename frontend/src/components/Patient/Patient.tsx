@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import api from '../../services/backend';
-
 import IMeeting from '../../types/IMeeting';
 import IPatient from '../../types/IPatient';
+import Navbar from '../Navbar/Navbar';
 import MeetingsList from './MeetingsList';
 
 const Patient = () => {
@@ -105,27 +105,30 @@ const Patient = () => {
   }, [params.patientId]);
 
   return (
-    <main style={{ padding: '1rem 0' }}>
-      <h2>
-        { t('hey') }
-        { ', ' }
-        { patient?.firstName }
-        { ' ' }
-        { patient?.lastName }
-      </h2>
-      <hr />
-      <h3>
-        { t('yourAppointments') }
-        :
-      </h3>
-      <MeetingsList meetingsList={patientMeetingsList} deleteItem={cancelMeeting} />
-      <hr />
-      <h3>
-        { t('availableAppointments') }
-        :
-      </h3>
-      <MeetingsList meetingsList={availableMeetingsList} deleteItem={bookMeeting} />
-    </main>
+    <div>
+      <Navbar />
+      <main style={{ padding: '1rem 0' }}>
+        <h2>
+          { t('hey') }
+          { ', ' }
+          { patient?.firstName }
+          { ' ' }
+          { patient?.lastName }
+        </h2>
+        <hr />
+        <h3>
+          { t('yourAppointments') }
+          :
+        </h3>
+        <MeetingsList meetingsList={patientMeetingsList} deleteItem={cancelMeeting} />
+        <hr />
+        <h3>
+          { t('availableAppointments') }
+          :
+        </h3>
+        <MeetingsList meetingsList={availableMeetingsList} deleteItem={bookMeeting} />
+      </main>
+    </div>
   );
 }
 

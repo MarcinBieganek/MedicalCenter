@@ -48,7 +48,7 @@ const AdminTimeMenager = () => {
 
   return (
     <main style={{ padding: '1rem 0' }}>
-      <h3>{ t('timeManagment') }</h3>
+      <h3>{ t('timeManagement') }</h3>
       <Button variant="primary" type="submit" href={`/doctors/${params.doctorPesel}/addappointment`}>{ t('add') }</Button>
       <DoctorsDatesList doctorsDatesList={doctorsDateList} deleteItem={deleteDoctorsDate} />
     </main>
