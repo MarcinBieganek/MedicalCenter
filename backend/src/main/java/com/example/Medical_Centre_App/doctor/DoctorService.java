@@ -24,7 +24,7 @@ public class DoctorService {
     public Doctor getDoctorByPesel(String pesel) {
         Doctor p = new Doctor();
         try (Connection connection = getConnection()) {
-            String query = " SELECT * FROM \"Doctor\" where \"PESEL\" = ? ";
+            String query = " SELECT * FROM \"Doctor\" where pesel = ? ";
             PreparedStatement st = connection.prepareStatement(query);
             st.setString(1, pesel);
             try (ResultSet resultSet = st.executeQuery()) {
@@ -75,12 +75,12 @@ public class DoctorService {
 
     public void addDoctor(Doctor doctor) {
         try (Connection connection = getConnection()) {
-            PreparedStatement st = connection.prepareStatement(" INSERT INTO \"Doctor\" (FirstName, LastName, " +
-                    " Speciality, PESEL) VALUES (?, ?, ?, ?) ");
-            st.setString(1, doctor.getPesel());
-            st.setString(2, doctor.getFirstName());
+            PreparedStatement st = connection.prepareStatement(" INSERT INTO \"Doctor\" (\"FirstName\", \"LastName\", " +
+                    " \"Speciality\", pesel) VALUES (?, ?, ?, ?) ");
+            st.setString(1, doctor.getFirstName());
+            st.setString(2, doctor.getLastName());
             st.setString(3, doctor.getSpec());
-            st.setString(4, doctor.getLastName());
+            st.setString(4, doctor.getPesel());
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -89,7 +89,7 @@ public class DoctorService {
 
     public void removeDoctor(String pesel) {
         try (Connection connection = getConnection()) {
-            PreparedStatement st = connection.prepareStatement(" DELETE FROM \"Doctor\" WHERE \"PESEL\" = ? ");
+            PreparedStatement st = connection.prepareStatement(" DELETE FROM \"Doctor\" WHERE pesel = ? ");
             st.setString(1, pesel);
             st.executeUpdate();
         } catch (SQLException e) {

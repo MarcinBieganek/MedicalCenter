@@ -24,7 +24,7 @@ public class PatientService {
     public Patient getPatientByPesel(String pesel) {
         Patient p = new Patient();
         try (Connection connection = getConnection()) {
-            String query = " SELECT * FROM \"Patient\" where \"PESEL\" = ? ";
+            String query = " SELECT * FROM \"Patient\" where pesel = ? ";
             PreparedStatement st = connection.prepareStatement(query);
             st.setString(1, pesel);
             try (ResultSet resultSet = st.executeQuery()) {
@@ -73,11 +73,11 @@ public class PatientService {
 
     public void addPatient(Patient patient) {
         try (Connection connection = getConnection()) {
-            PreparedStatement st = connection.prepareStatement(" INSERT INTO \"Patient\" (FirstName, LastName, " +
-                        "PESEL) VALUES (?, ?, ?) ");
-            st.setString(1, patient.getPesel());
-            st.setString(2, patient.getFirstName());
-            st.setString(3, patient.getLastName());
+            PreparedStatement st = connection.prepareStatement(" INSERT INTO \"Patient\" (\"FirstName\", \"LastName\", " +
+                        "pesel) VALUES (?, ?, ?) ");
+            st.setString(1, patient.getFirstName());
+            st.setString(2, patient.getLastName());
+            st.setString(3, patient.getPesel());
             st.executeUpdate();
     } catch (SQLException e) {
             e.printStackTrace();
