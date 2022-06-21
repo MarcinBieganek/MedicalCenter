@@ -9,7 +9,9 @@ import IDoctorsDate from '../../types/IDoctorsDate';
 
 const AddAppointmentForm = () => {
   const { t } = useTranslation();
-  const { register, handleSubmit, formState: { errors } } = useForm<IDoctorsDate>();
+  const {
+    register, handleSubmit, getValues, formState: { errors },
+  } = useForm<IDoctorsDate>();
   const navigate = useNavigate();
 
   const onAdd: SubmitHandler<IDoctorsDate> = async (data) => {
@@ -24,7 +26,7 @@ const AddAppointmentForm = () => {
       await api.post('/visitadd', newAppointment);
       navigate('/admin');
     } catch (error) {
-      console.log(`Error: ${error}`);
+      // debuglog(`Error: ${error}`);
     }
   };
 
@@ -36,8 +38,8 @@ const AddAppointmentForm = () => {
             <Form.Group className="mb-4" controlId="formName">
               <Form.Label>{ t('date') }</Form.Label>
               <Form.Control
-                type="name"
-                {...register('date', { required: t('firstNameRequired') })}
+                type="date"
+                {...register('date', { required: t('dateRequired'), min: { value: Date(), message: t("You can't choose past date") } })}
                 placeholder={t('date')}
               />
               <FormLabel style={{ color: 'red' }}>{errors.date?.message}</FormLabel>
@@ -45,10 +47,10 @@ const AddAppointmentForm = () => {
             <Form.Group className="mb-4" controlId="formLastname">
               <Form.Label>{ t('hour from') }</Form.Label>
               <Form.Control
-                type="name"
+                type="time"
                 {...register(
                   'startHour',
-                  { required: t('hour from') },
+                  { required: t('hourRequired') },
                 )}
                 placeholder={t('hour from')}
               />
@@ -57,8 +59,8 @@ const AddAppointmentForm = () => {
             <Form.Group className="mb-4" controlId="formLastname">
               <Form.Label>{ t('hour to') }</Form.Label>
               <Form.Control
-                type="name"
-                {...register('endHour', { required: t('specRequired') })}
+                type="time"
+                {...register('endHour', { required: t('hourRequired'), validate: { correctHours: (endHour) => endHour > getValues().startHour || t('End hour must be after start hour') } })}
                 placeholder={t('hour to')}
               />
               <FormLabel style={{ color: 'red' }}>{errors.endHour?.message}</FormLabel>
