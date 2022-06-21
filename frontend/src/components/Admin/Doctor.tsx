@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Outlet, useParams } from 'react-router-dom';
 import api from '../../services/backend';
 import IDoctor from '../../types/IDoctor';
+import Navbar from '../Navbar/Navbar';
 
 const Doctor = () => {
   const params = useParams();
@@ -24,7 +25,8 @@ const Doctor = () => {
   }, [params.doctorId]);
 
   return (
-    <main style={{ padding: '1rem 0' }}>
+    <main>
+      <Navbar />
       <h3>
         { t('doctor') }
         :
