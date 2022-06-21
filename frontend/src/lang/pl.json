@@ -26,7 +26,7 @@
     "delete": "Usuń",
     "login": "Zaloguj się",
     "register": "Zarejestruj się",
-    "noPatient": "Nie ma pacjenta o takim imieniu i nazwisku",
+    "noPatient": "Nie ma pacjenta o takich danych",
     "patientExists": "Pacjent o podanym imieniu i nazwisku już jest zarejestrowany",
     "hey": "Cześć",
     "date": "Data",

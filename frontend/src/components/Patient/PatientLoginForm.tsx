@@ -5,7 +5,7 @@ import FormLabel from 'react-bootstrap/FormLabel';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import api from '../../services/backend';
+import api, { ApiError } from '../../services/backend';
 import validatePeselChecksum from '../../services/validation';
 
 import IPatient from '../../types/IPatient';
@@ -19,22 +19,17 @@ const PatientLoginForm = () => {
   const onLogin: SubmitHandler<IPatient> = async (data) => {
     alert(JSON.stringify(data));
     try {
-      const patientsResponse = await api.get('/patients');
-      const patients = patientsResponse.data;
+      const patientResponse = await api.get(`/patient/${data.pesel}`);
+      const patient = patientResponse.data;
 
-      const findPatient = patients.find(
-        (p: IPatient) => p.pesel === data.pesel
-          && p.firstName === data.firstName
-          && p.lastName === data.lastName,
-      );
-
-      if (findPatient) {
-        navigate(`/patients/${findPatient.pesel}`);
-      } else {
-        setNoPatient(true);
-      }
+      navigate(`/patients/${patient.pesel}`);
     } catch (error) {
-      console.log(`Error: ${error}`);
+      const err = error as ApiError;
+      if (err.response?.status === 404) {
+        setNoPatient(true);
+      } else {
+        console.log(`Error: ${error}`);
+      }
     }
   };
 
