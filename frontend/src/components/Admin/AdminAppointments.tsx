@@ -14,15 +14,15 @@ const AdminAppointments = () => {
 
   const getAppointments = async () => {
     try {
-      const bookedVisitsResponse = await api.get('/visits/booked');
+      const bookedVisitsResponse = await api.get('/bookedvisits');
       const bookedVisits = bookedVisitsResponse.data;
-      const doctorBookedVisits = bookedVisits.filter((v) => v.doctorId === params.doctorId);
+      const doctorBookedVisits = bookedVisits.filter((v) => v.doctorPesel === params.doctorPesel);
 
       const patientsResponse = await api.get('/patients');
       const patients = patientsResponse.data;
 
       const appointments = doctorBookedVisits.map((visit) => {
-        const visitPatient = patients.find((p) => p.id === visit.patientId);
+        const visitPatient = patients.find((p) => p.pesel === visit.patientPesel);
         return {
           id: visit.id,
           patientFirstName: visitPatient.firstName,
@@ -41,7 +41,7 @@ const AdminAppointments = () => {
 
   const cancelAppointment = async (appointment: IAppointment) => {
     try {
-      await api.put('/visits/notbooked', null, { params: { visitId: appointment.id } });
+      await api.put('/visitunbook', null, { params: { visitId: appointment.id } });
 
       getAppointments();
     } catch (error) {

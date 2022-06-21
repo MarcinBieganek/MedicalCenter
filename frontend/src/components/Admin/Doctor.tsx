@@ -13,7 +13,7 @@ const Doctor = () => {
   useEffect(() => {
     const getDoctor = async () => {
       try {
-        const response = await api.get(`/doctors/${params.doctorId}`);
+        const response = await api.get(`/doctor/${params.doctorPesel}`);
         setDoctor(response.data);
       } catch (error) {
         console.log(error);
@@ -39,11 +39,11 @@ const Doctor = () => {
         {' '}
         {doctor?.spec}
       </h4>
-      <Button variant="primary" href={`/doctors/${params.doctorId}/time`}>{ t('timeManagment') }</Button>
+      <Button variant="primary" href={`/doctors/${params.doctorPesel}/time`}>{ t('timeManagment') }</Button>
       {' '}
       |
       {' '}
-      <Button variant="primary" href={`/doctors/${params.doctorId}/appointments`}>{ t('bookedAppointments') }</Button>
+      <Button variant="primary" href={`/doctors/${params.doctorPesel}/appointments`}>{ t('bookedAppointments') }</Button>
       <Outlet />
     </main>
   );

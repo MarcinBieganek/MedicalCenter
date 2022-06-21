@@ -34,7 +34,7 @@ root.render(
         <Route path="admin" element={<Admin />} />
         <Route path="adddoctor" element={<AddDoctor />} />
         <Route path="doctors" element={<Doctors />}>
-          <Route path=":doctorId" element={<Doctor />}>
+          <Route path=":doctorPesel" element={<Doctor />}>
             <Route path="time" element={<AdminTimeMenager />} />
             <Route path="appointments" element={<AdminAppointments />} />
           </Route>

@@ -35,7 +35,7 @@ const Admin = () => {
         <div className="col-md-3">
           <ListGroup defaultActiveKey="#link1">
             {doctors.map((doctor: IDoctor) => (
-              <ListGroup.Item action href={`/doctors/${doctor.id}`} key={doctor.id}>
+              <ListGroup.Item action href={`/doctors/${doctor.pesel}`} key={doctor.pesel}>
                 {doctor.firstName}
                 {' '}
                 {doctor.lastName}

@@ -15,9 +15,9 @@ const AdminTimeMenager = () => {
 
   const getDoctorsDates = async () => {
     try {
-      const unbookedVisitsResponse = await api.get('/visits/notbooked');
+      const unbookedVisitsResponse = await api.get('/unbookedvisits');
       const unbookedVisits = unbookedVisitsResponse.data;
-      const doctorBookedVisits = unbookedVisits.filter((v) => v.doctorId === params.doctorId);
+      const doctorBookedVisits = unbookedVisits.filter((v) => v.doctorPesel === params.doctorPesel);
 
       const doctorsDates = doctorBookedVisits.map((visit) => ({
         id: visit.id,
@@ -34,7 +34,7 @@ const AdminTimeMenager = () => {
 
   const deleteDoctorsDate = async (doctorsDate: IDoctorsDate) => {
     try {
-      await api.delete(`/visits/${doctorsDate.id}`);
+      await api.delete(`/visitdelete/${doctorsDate.id}`);
 
       getDoctorsDates();
     } catch (error) {

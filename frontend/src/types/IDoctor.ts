@@ -1,5 +1,5 @@
 export default interface IDoctor {
-    id: string;
+    pesel: string;
     firstName: string;
     lastName: string;
     spec: string;
