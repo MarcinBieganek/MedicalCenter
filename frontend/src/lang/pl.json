@@ -19,7 +19,7 @@
     "spec": "Specjalizacja",
     "specRequired": "Specjalizacja jest wymagana",
     "doctor": "Lekarz",
-    "timeManagment": "Zarządzanie terminami",
+    "timeManagement": "Zarządzanie terminami",
     "bookedAppointments": "Umówione wizyty",
     "add": "Dodaj",
     "edit": "Edytuj",
@@ -30,7 +30,9 @@
     "patientExists": "Pacjent o podanym imieniu i nazwisku już jest zarejestrowany",
     "hey": "Cześć",
     "date": "Data",
+    "dateRequired": "Data jest wymagana",
     "hour from": "Godzina od",
+    "hourRequired": "Godzina jest wymagana",
     "hour to": "Godzina do",
     "patient first name": "Imię pacjenta",
     "patient last name": "Nazwisko pacjenta",
@@ -38,5 +40,7 @@
     "doctor last name": "Nazwisko lekarza",
     "book/cancel": "Zarezerwuj/Odwołaj",
     "AppointmentAdding": "Dodawanie wizyty",
-    "AddAppointment": "Dodaj wizytę"
+    "AddAppointment": "Dodaj wizytę",
+    "You can't choose past date": "Nie możesz wybrać przeszłej daty",
+    "End hour must be after start hour": "Godzina końcowa musi być późniejsza niż początkowa"
 }

@@ -39,7 +39,7 @@ const Doctor = () => {
         {' '}
         {doctor?.spec}
       </h4>
-      <Button variant="primary" href={`/doctors/${params.doctorPesel}/time`}>{ t('timeManagment') }</Button>
+      <Button variant="primary" href={`/doctors/${params.doctorPesel}/time`}>{ t('timeManagement') }</Button>
       {' '}
       |
       {' '}

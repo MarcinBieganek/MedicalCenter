@@ -25,7 +25,7 @@ const AddDoctorForm = () => {
       await api.post('/doctoradd', newDoctor);
       navigate('/admin');
     } catch (error) {
-      console.log(`Error: ${error}`);
+      // console.log(`Error: ${error}`);
     }
   };
 
