@@ -6,5 +6,5 @@ export default interface IMeeting {
   startHour: string;
   endHour: string;
   date: string;
-  patientId: string;
+  patientPesel: string;
 }

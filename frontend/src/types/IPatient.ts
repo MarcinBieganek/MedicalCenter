@@ -1,5 +1,5 @@
 export default interface IPatient {
-    id: string;
+    pesel: string;
     firstName: string;
     lastName: string;
 }

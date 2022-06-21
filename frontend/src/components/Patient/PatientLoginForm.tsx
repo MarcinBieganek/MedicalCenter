@@ -6,6 +6,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/backend';
+import validatePeselChecksum from '../../services/validation';
 
 import IPatient from '../../types/IPatient';
 
@@ -22,11 +23,13 @@ const PatientLoginForm = () => {
       const patients = patientsResponse.data;
 
       const findPatient = patients.find(
-        (p: IPatient) => p.firstName === data.firstName && p.lastName === data.lastName,
+        (p: IPatient) => p.pesel === data.pesel
+          && p.firstName === data.firstName
+          && p.lastName === data.lastName,
       );
 
       if (findPatient) {
-        navigate(`/patients/${findPatient.id}`);
+        navigate(`/patients/${findPatient.pesel}`);
       } else {
         setNoPatient(true);
       }
@@ -47,6 +50,24 @@ const PatientLoginForm = () => {
         <div className="row">
           <div className="col-md-3">
             <Form onSubmit={handleSubmit(onLogin)}>
+              <Form.Group className="mb-4" controlId="formPesel">
+                <Form.Label>{ t('pesel') }</Form.Label>
+                <Form.Control
+                  type="name"
+                  {...register('pesel', {
+                    required: t('peselRequired'),
+                    pattern: {
+                      value: /^[0-9]{11}$/,
+                      message: t('peselInWrongFormat'),
+                    },
+                    validate: {
+                      validatePesel: (pesel) => validatePeselChecksum(pesel) || t('peselInWrongFormat'),
+                    },
+                  })}
+                  placeholder={t('pesel')}
+                />
+                <FormLabel style={{ color: 'red' }}>{errors.pesel?.message}</FormLabel>
+              </Form.Group>
               <Form.Group className="mb-4" controlId="formName">
                 <Form.Label>{ t('firstName') }</Form.Label>
                 <Form.Control

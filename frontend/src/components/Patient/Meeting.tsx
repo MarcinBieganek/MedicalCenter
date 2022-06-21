@@ -24,7 +24,7 @@ const Meeting = ({ meeting, deleteItem } : IMeetingProps) => {
       <td>{meeting.endHour}</td>
       <td>
         <Button variant="primary" type="button" onClick={() => deleteItem(meeting)}>
-          {meeting.patientId === params.patientId
+          {meeting.patientPesel === params.patientPesel
             ? t('cancel')
             : t('bookIt') }
         </Button>

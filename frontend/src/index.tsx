@@ -42,7 +42,7 @@ root.render(
         <Route path="loginpatient" element={<PatientLogin />} />
         <Route path="registerpatient" element={<PatientRegister />} />
         <Route path="patients" element={<Patients />}>
-          <Route path=":patientId" element={<Patient />} />
+          <Route path=":patientPesel" element={<Patient />} />
         </Route>
       </Routes>
     </BrowserRouter>

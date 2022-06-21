@@ -5,6 +5,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/backend';
+import validatePeselChecksum from '../../services/validation';
 import IDoctor from '../../types/IDoctor';
 
 const AddDoctorForm = () => {
@@ -40,8 +41,11 @@ const AddDoctorForm = () => {
                 {...register('pesel', {
                   required: t('peselRequired'),
                   pattern: {
-                    value: /^[0-9]{2}([02468]1|[13579][012])(0[1-9]|1[0-9]|2[0-9]|3[01])[0-9]{5}$/,
+                    value: /^[0-9]{11}$/,
                     message: t('peselInWrongFormat'),
+                  },
+                  validate: {
+                    validatePesel: (pesel) => validatePeselChecksum(pesel) || t('peselInWrongFormat'),
                   },
                 })}
                 placeholder={t('pesel')}
