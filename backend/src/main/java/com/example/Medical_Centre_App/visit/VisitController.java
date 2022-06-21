@@ -18,8 +18,8 @@ public class VisitController {
     }
 
     @GetMapping("/visits")
-    public List<Visit> getAllVisits() {
-        return visitService.getAllVisits();
+    public List<Visit> getVisits(@RequestParam(required=false) Boolean isBooked, @RequestParam(required=false) String doctorPesel, @RequestParam(required=false) String patientPesel) {
+        return visitService.getVisits(isBooked, doctorPesel, patientPesel);
     }
 
     @RequestMapping(method= RequestMethod.POST, value="/visitadd")

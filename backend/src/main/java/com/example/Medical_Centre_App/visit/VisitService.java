@@ -44,19 +44,50 @@ public class VisitService {
         return v;
     }
 
-    public List<Visit> getAllVisits() {
+    public List<Visit> getVisits(Boolean booked, String dp, String pp) {
         List<Visit> visits = new ArrayList<>();
         try (Connection connection = getConnection()) {
             try (Statement statement = connection.createStatement()) {
-                try (ResultSet resultSet = statement.executeQuery(" SELECT * FROM \"Visit\" ")) {
+                String query = " SELECT * FROM \"Visit\" WHERE ";
+                Integer counter = 0;
+                if (booked != null) {
+                    query += " \"isBooked\" = ? ";
+                    counter += 1;
+                }
+                if (dp != null) {
+                    if (counter > 0) {
+                        query += "AND";
+                    }
+                    query += " \"DoctorPesel\" = ? ";
+                }
+                if (pp != null) {
+                    if (counter > 0) {
+                        query += "AND";
+                    }
+                    query += " \"PatientPesel\" = ? ";
+                }
+                PreparedStatement st = connection.prepareStatement(query);
+                Integer index = 1;
+                if (booked != null) {
+                    st.setBoolean(index, booked);
+                    index += 1;
+                }
+                if (dp != null) {
+                    st.setString(index, dp);
+                    index += 1;
+                }
+                if (pp != null) {
+                    st.setString(index, pp);
+                }
+                try (ResultSet resultSet = st.executeQuery()) {
                     while(resultSet.next()) {
-                        Integer newId = resultSet.getInt("id");;
-                        String doctorPesel = resultSet.getString("DoctorPesel");;;
-                        String patientPesel = resultSet.getString("PatientPesel");;;
-                        Boolean isBooked = resultSet.getBoolean("isBooked");;;
-                        Timestamp startDate = resultSet.getTimestamp("StartDate");;;
-                        Timestamp endDate = resultSet.getTimestamp("EndDate");;;
-                        Date day = resultSet.getDate("Day");;;
+                        Integer newId = resultSet.getInt("id");
+                        String doctorPesel = resultSet.getString("DoctorPesel");
+                        String patientPesel = resultSet.getString("PatientPesel");
+                        Boolean isBooked = resultSet.getBoolean("isBooked");
+                        Timestamp startDate = resultSet.getTimestamp("StartDate");
+                        Timestamp endDate = resultSet.getTimestamp("EndDate");
+                        Date day = resultSet.getDate("Day");
                         Visit v = new Visit(newId, doctorPesel, patientPesel, isBooked, startDate, endDate, day);
                         visits.add(v);
                     }
