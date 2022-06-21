@@ -1,6 +1,5 @@
-package com.example.medicalcentreapp.visit;
+package com.example.Medical_Centre_App.visit;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
 

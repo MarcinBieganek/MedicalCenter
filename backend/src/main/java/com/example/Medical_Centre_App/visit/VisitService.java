@@ -1,9 +1,5 @@
-package com.example.medicalcentreapp.visit;
+package com.example.Medical_Centre_App.visit;
 
-import com.example.medicalcentreapp.doctor.Doctor;
-import com.example.medicalcentreapp.patient.Patient;
-import com.example.medicalcentreapp.patient.PatientService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;
@@ -11,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static com.example.medicalcentreapp.MedicalCentreAppApplication.getConnection;
+import static com.example.Medical_Centre_App.MedicalCentreAppApplication.getConnection;
 
 @Service
 public class VisitService {

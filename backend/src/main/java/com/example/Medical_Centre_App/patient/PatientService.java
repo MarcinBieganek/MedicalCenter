@@ -1,4 +1,4 @@
-package com.example.medicalcentreapp.patient;
+package com.example.Medical_Centre_App.patient;
 
 import org.springframework.stereotype.Service;
 

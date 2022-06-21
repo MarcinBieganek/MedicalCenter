@@ -1,4 +1,4 @@
-package com.example.medicalcentreapp.patient;
+package com.example.Medical_Centre_App.patient;
 
 public class Patient {
     private String pesel;
