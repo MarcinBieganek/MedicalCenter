@@ -23,5 +23,4 @@ public class MedicalCentreAppApplication {
 		System.out.println("Connected to DB");
 		return conn;
 	}
-
 }
