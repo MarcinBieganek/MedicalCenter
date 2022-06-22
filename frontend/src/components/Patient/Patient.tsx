@@ -26,7 +26,7 @@ const Patient = () => {
 
   const getPatientVisits = async () => {
     try {
-      const patientBookedVisitsResponse = await api.get('/visits', { params: { patientPesel: params.patientPesel } });
+      const patientBookedVisitsResponse = await api.get('/visit', { params: { patientPesel: params.patientPesel } });
       const patientBookedVisits = patientBookedVisitsResponse.data;
 
       const patientVisits = await Promise.all(patientBookedVisits.map(async (visit) => {
@@ -52,7 +52,7 @@ const Patient = () => {
 
   const getUnbookedVisits = async () => {
     try {
-      const unbookedVisitsResponse = await api.get('/visits', { params: { isBooked: false } });
+      const unbookedVisitsResponse = await api.get('/visit', { params: { isBooked: false } });
       const unbookedVisits = unbookedVisitsResponse.data;
 
       const availableMeetings = await Promise.all(unbookedVisits.map(async (visit) => {
@@ -78,7 +78,7 @@ const Patient = () => {
 
   const cancelMeeting = async (meeting: IMeeting) => {
     try {
-      await api.put('/visitunbook', null, { params: { visitId: meeting.id } });
+      await api.put('/visit/unbook', null, { params: { visitId: meeting.id } });
 
       getPatientVisits();
       getUnbookedVisits();
@@ -89,7 +89,7 @@ const Patient = () => {
 
   const bookMeeting = async (meeting: IMeeting) => {
     try {
-      await api.put('/visitbook', null, { params: { visitId: meeting.id, patientPesel: params.patientPesel } });
+      await api.put('/visit/book', null, { params: { visitId: meeting.id, patientPesel: params.patientPesel } });
 
       getPatientVisits();
       getUnbookedVisits();

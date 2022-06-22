@@ -14,22 +14,22 @@ public class DoctorController {
     @Autowired
     private DoctorService doctorService;
 
-    @RequestMapping("/doctor/{pesel}")
+    @GetMapping("/doctor/{pesel}")
     public Doctor getDoctorByPesel(@PathVariable String pesel) {
         return doctorService.getDoctorByPesel(pesel);
     }
 
-    @DeleteMapping("/doctordelete/{pesel}")
+    @DeleteMapping("/doctor/{pesel}")
     public void removeDoctor(@PathVariable String pesel) {
          doctorService.removeDoctor(pesel);
     }
 
-    @GetMapping("/doctors")
+    @GetMapping("/doctor")
     public List<Doctor> getAllDoctors() {
         return doctorService.getAllDoctors();
     }
 
-    @RequestMapping(method=RequestMethod.POST, value="/doctoradd")
+    @PostMapping("/doctor")
     public ResponseEntity<Doctor> addDoctor(@RequestBody Doctor doctor) {
         Doctor addedDoctor = doctorService.addDoctor(doctor);
         if (addedDoctor == null) {
@@ -38,7 +38,7 @@ public class DoctorController {
         return new ResponseEntity<Doctor>(addedDoctor, HttpStatus.CREATED); 
     }
 
-    @RequestMapping(method=RequestMethod.POST, value="/doctoredit")
+    @PutMapping("/doctor")
     public void editDoctor(@RequestBody Doctor doctor) {
         doctorService.editDoctor(doctor);
     }

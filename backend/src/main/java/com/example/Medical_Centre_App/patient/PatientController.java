@@ -14,7 +14,7 @@ public class PatientController {
     @Autowired
     private PatientService patientService;
 
-    @RequestMapping("/patient/{pesel}")
+    @GetMapping("/patient/{pesel}")
     public ResponseEntity<Patient> getPatientByPesel(@PathVariable String pesel) {
         Patient foundPatient = patientService.getPatientByPesel(pesel);
         if (foundPatient == null) {
@@ -23,12 +23,12 @@ public class PatientController {
         return new ResponseEntity<Patient>(foundPatient, HttpStatus.OK);
     }
 
-    @GetMapping("/patients")
+    @GetMapping("/patient")
     public List<Patient> getAllPatients() {
         return patientService.getAllPatients();
     }
 
-    @RequestMapping(method= RequestMethod.POST, value="/patientadd")
+    @PostMapping("/patient")
     public ResponseEntity<Patient> addPatient(@RequestBody Patient patient) {
         Patient addedPatient = patientService.addPatient(patient);
         if (addedPatient == null) {

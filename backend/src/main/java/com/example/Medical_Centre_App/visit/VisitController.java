@@ -12,32 +12,32 @@ public class VisitController {
     @Autowired
     private VisitService visitService;
 
-    @RequestMapping("/visit/{id}")
+    @GetMapping("/visit/{id}")
     public Visit getVisitById(@PathVariable Integer id) {
         return visitService.getVisitById(id);
     }
 
-    @GetMapping("/visits")
+    @GetMapping("/visit")
     public List<Visit> getVisits(@RequestParam(required=false) Boolean isBooked, @RequestParam(required=false) String doctorPesel, @RequestParam(required=false) String patientPesel) {
         return visitService.getVisits(isBooked, doctorPesel, patientPesel);
     }
 
-    @RequestMapping(method= RequestMethod.POST, value="/visitadd")
+    @PostMapping("/visit")
     public void addVisit(@RequestBody Visit visit) {
         visitService.addVisit(visit);
     }
 
-    @DeleteMapping("/visitdelete")
+    @DeleteMapping("/visit")
     public void removeDoctor(@RequestParam Integer visitId) {
         visitService.removeVisit(visitId);
     }
 
-    @RequestMapping(method=RequestMethod.PUT, value="/visitbook")
+    @PutMapping("/visit/book")
     public void bookVisit(@RequestParam Integer visitId, @RequestParam String patientPesel) {
         visitService.bookVisit(visitId, patientPesel);
     }
 
-    @RequestMapping(method=RequestMethod.PUT, value="/visitunbook")
+    @PutMapping("/visit/unbook")
     public void unbookVisit(@RequestParam Integer visitId) {
         visitService.unbookVisit(visitId);
     }

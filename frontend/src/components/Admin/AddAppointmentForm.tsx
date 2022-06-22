@@ -26,7 +26,7 @@ const AddAppointmentForm = () => {
     }
     console.log(newAppointment);
     try {
-      await api.post('/visitadd', newAppointment);
+      await api.post('/visit', newAppointment);
       navigate('/admin');
     } catch (error) {
       // debuglog(`Error: ${error}`);

@@ -13,7 +13,7 @@ const AdminAppointments = () => {
 
   const getAppointments = async () => {
     try {
-      const bookedVisitsResponse = await api.get('/visits', { params: { isBooked: true, doctorPesel: params.doctorPesel } });
+      const bookedVisitsResponse = await api.get('/visit', { params: { isBooked: true, doctorPesel: params.doctorPesel } });
       const bookedVisits = bookedVisitsResponse.data;
 
       const appointments = await Promise.all(bookedVisits.map(async (visit) => {
@@ -37,7 +37,7 @@ const AdminAppointments = () => {
 
   const cancelAppointment = async (appointment: IAppointment) => {
     try {
-      await api.put('/visitunbook', null, { params: { visitId: appointment.id } });
+      await api.put('/visit/unbook', null, { params: { visitId: appointment.id } });
 
       getAppointments();
     } catch (error) {

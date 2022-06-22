@@ -25,7 +25,7 @@ const AddDoctorForm = () => {
         spec: data.spec,
       }
 
-      await api.post('/doctoradd', newDoctor);
+      await api.post('/doctor', newDoctor);
       navigate('/admin');
     } catch (error) {
       const err = error as ApiError;

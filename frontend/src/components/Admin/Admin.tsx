@@ -13,7 +13,7 @@ const Admin = () => {
   useEffect(() => {
     const getDoctors = async () => {
       try {
-        const response = await api.get('/doctors');
+        const response = await api.get('/doctor');
         setDoctors(response.data);
       } catch (error) {
         // console.log(error);
