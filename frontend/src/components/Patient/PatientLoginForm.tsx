@@ -12,7 +12,7 @@ import IPatient from '../../types/IPatient';
 
 const PatientLoginForm = () => {
   const { t } = useTranslation();
-  const [noPatient, setNoPatient] = useState<boolean>(false);
+  const [noPatient, setNoPatient] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm<IPatient>();
   const navigate = useNavigate();
 
