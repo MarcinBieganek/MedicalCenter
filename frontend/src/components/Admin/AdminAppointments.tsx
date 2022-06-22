@@ -1,3 +1,4 @@
+import { debug } from 'util';
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
@@ -31,7 +32,7 @@ const AdminAppointments = () => {
 
       setAppointmentsList(appointments);
     } catch (error) {
-      console.log(error);
+      debug(error);
     }
   };
 
@@ -41,7 +42,7 @@ const AdminAppointments = () => {
 
       getAppointments();
     } catch (error) {
-      console.log(error);
+      debug(error);
     }
   }
 

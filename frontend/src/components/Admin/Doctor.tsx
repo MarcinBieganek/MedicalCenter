@@ -1,3 +1,4 @@
+import { debug } from 'util';
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import { useTranslation } from 'react-i18next';
@@ -17,7 +18,7 @@ const Doctor = () => {
         const response = await api.get(`/doctor/${params.doctorPesel}`);
         setDoctor(response.data);
       } catch (error) {
-        // console.log(error);
+        debug(error);
       }
     };
 

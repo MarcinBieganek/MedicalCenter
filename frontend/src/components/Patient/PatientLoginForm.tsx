@@ -1,3 +1,4 @@
+import { debug } from 'util';
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -7,7 +8,6 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import api, { ApiError } from '../../services/backend';
 import validatePeselChecksum from '../../services/validation';
-
 import IPatient from '../../types/IPatient';
 
 const PatientLoginForm = () => {
@@ -27,7 +27,7 @@ const PatientLoginForm = () => {
       if (err.response?.status === 404) {
         setNoPatient(true);
       } else {
-        // console.log(`Error: ${error}`);
+        debug(`Error: ${error}`);
       }
     }
   };

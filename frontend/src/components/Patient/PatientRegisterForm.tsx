@@ -1,3 +1,4 @@
+import { debug } from 'util';
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -17,7 +18,6 @@ const PatientRegisterForm = () => {
   const navigate = useNavigate();
 
   const onAdd: SubmitHandler<IPatient> = async (data) => {
-    // alert(JSON.stringify(data));
     try {
       const newPatient = {
         pesel: data.pesel,
@@ -33,7 +33,7 @@ const PatientRegisterForm = () => {
       if (err.response?.status === 409) {
         setPatientExists(true);
       } else {
-        // console.log(`Error: ${error}`);
+        debug(`Error: ${error}`);
       }
     }
   };

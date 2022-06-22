@@ -1,3 +1,4 @@
+import { debug } from 'util';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FormLabel from 'react-bootstrap/FormLabel';
@@ -16,7 +17,6 @@ const AddAppointmentForm = () => {
   const navigate = useNavigate();
 
   const onAdd: SubmitHandler<IDoctorsDate> = async (data) => {
-    alert(JSON.stringify(data));
     const newAppointment = {
       startDate: data.startHour,
       endDate: data.endHour,
@@ -24,12 +24,11 @@ const AddAppointmentForm = () => {
       isBooked: false,
       doctorPesel: params.doctorPesel,
     }
-    console.log(newAppointment);
     try {
       await api.post('/visit', newAppointment);
       navigate('/admin');
     } catch (error) {
-      // debuglog(`Error: ${error}`);
+      debug(`Error: ${error}`);
     }
   };
 
