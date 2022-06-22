@@ -1,4 +1,3 @@
-import { debug } from 'util';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
@@ -21,7 +20,7 @@ const Patient = () => {
       const response = await api.get(`/patient/${params.patientPesel}`);
       setPatient(response.data);
     } catch (error) {
-      debug(error);
+      console.error(error);
     }
   };
 
@@ -47,7 +46,7 @@ const Patient = () => {
 
       setPatientMeetingsList(patientVisits);
     } catch (error) {
-      debug(error);
+      console.error(error);
     }
   };
 
@@ -73,7 +72,7 @@ const Patient = () => {
 
       setAvailableMeetingsList(availableMeetings);
     } catch (error) {
-      debug(error);
+      console.error(error);
     }
   };
 
@@ -84,7 +83,7 @@ const Patient = () => {
       getPatientVisits();
       getUnbookedVisits();
     } catch (error) {
-      debug(error);
+      console.error(error);
     }
   }
 
@@ -95,7 +94,7 @@ const Patient = () => {
       getPatientVisits();
       getUnbookedVisits();
     } catch (error) {
-      debug(error);
+      console.error(error);
     }
   }
 

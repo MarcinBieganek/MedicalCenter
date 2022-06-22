@@ -1,4 +1,3 @@
-import { debug } from 'util';
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -27,7 +26,7 @@ const PatientLoginForm = () => {
       if (err.response?.status === 404) {
         setNoPatient(true);
       } else {
-        debug(`Error: ${error}`);
+        console.error(error);
       }
     }
   };

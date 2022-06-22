@@ -1,4 +1,3 @@
-import { debug } from 'util';
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -17,7 +16,7 @@ const Admin = () => {
         const response = await api.get('/doctor');
         setDoctors(response.data);
       } catch (error) {
-        debug(error);
+        console.error(error);
       }
     };
 

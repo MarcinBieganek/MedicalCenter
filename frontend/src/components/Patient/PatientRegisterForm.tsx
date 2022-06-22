@@ -1,4 +1,3 @@
-import { debug } from 'util';
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -33,7 +32,7 @@ const PatientRegisterForm = () => {
       if (err.response?.status === 409) {
         setPatientExists(true);
       } else {
-        debug(`Error: ${error}`);
+        console.error(`Error: ${error}`);
       }
     }
   };

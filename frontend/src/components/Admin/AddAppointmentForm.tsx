@@ -1,4 +1,3 @@
-import { debug } from 'util';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FormLabel from 'react-bootstrap/FormLabel';
@@ -28,7 +27,7 @@ const AddAppointmentForm = () => {
       await api.post('/visit', newAppointment);
       navigate('/admin');
     } catch (error) {
-      debug(`Error: ${error}`);
+      console.error(`Error: ${error}`);
     }
   };
 

@@ -1,4 +1,3 @@
-import { debug } from 'util';
 import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { useTranslation } from 'react-i18next';
@@ -28,7 +27,7 @@ const AdminTimeMenager = () => {
 
       setDoctorsDateList(doctorsDates);
     } catch (error) {
-      debug(error);
+      console.error(error);
     }
   };
 
@@ -38,7 +37,7 @@ const AdminTimeMenager = () => {
 
       getDoctorsDates();
     } catch (error) {
-      debug(error);
+      console.error(error);
     }
   }
 
