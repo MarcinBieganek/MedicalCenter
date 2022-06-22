@@ -33,7 +33,7 @@ const AdminTimeMenager = () => {
 
   const deleteDoctorsDate = async (doctorsDate: IDoctorsDate) => {
     try {
-      await api.delete(`/visit/${doctorsDate.id}`);
+      await api.delete('/visit/', { params: { visitId: doctorsDate.id } });
 
       getDoctorsDates();
     } catch (error) {
