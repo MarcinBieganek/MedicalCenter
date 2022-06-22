@@ -17,10 +17,11 @@ const AddAppointmentForm = () => {
   const onAdd: SubmitHandler<IDoctorsDate> = async (data) => {
     alert(JSON.stringify(data));
     const newAppointment = {
-      startHour: data.startHour,
-      endHour: data.endHour,
-      date: data.date,
-      pesel: data.pesel,
+      startDate: data.startHour,
+      endDate: data.endHour,
+      day: data.date,
+      isBooked: false,
+      doctorPesel: data.pesel,
     }
     try {
       await api.post('/visitadd', newAppointment);

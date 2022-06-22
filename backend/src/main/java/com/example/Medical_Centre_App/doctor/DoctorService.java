@@ -18,7 +18,6 @@ public class DoctorService {
     //List<Doctor> doctors = new ArrayList<>(Arrays.asList(doctor1, doctor2, doctor3));
 
     public Doctor getDoctorByPesel(String pesel) {
-        Doctor p = new Doctor();
         try (Connection connection = getConnection()) {
             String query = " SELECT * FROM \"Doctor\" where pesel = ? ";
             PreparedStatement st = connection.prepareStatement(query);
@@ -29,10 +28,7 @@ public class DoctorService {
                     String firstName = resultSet.getString("FirstName");
                     String lastName = resultSet.getString("LastName");
                     String spec = resultSet.getString("Speciality");
-                    p.setPesel(ps);
-                    p.setFirstName(firstName);
-                    p.setLastName(lastName);
-                    p.setSpec(spec);
+                    return new Doctor(ps, firstName, lastName, spec);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -40,7 +36,7 @@ public class DoctorService {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return p;
+        return null;
     }
 
     public List<Doctor> getAllDoctors() {
@@ -69,9 +65,9 @@ public class DoctorService {
         return doctors;
     }
 
-    public void addDoctor(Doctor doctor) {
+    public Doctor addDoctor(Doctor doctor) {
         Doctor checkedDoctor = getDoctorByPesel(doctor.getPesel());
-        if(!isEmpty(checkedDoctor)) {
+        if(isEmpty(checkedDoctor)) {
             try (Connection connection = getConnection()) {
                 PreparedStatement st = connection.prepareStatement(" INSERT INTO \"Doctor\" (\"FirstName\", \"LastName\", " +
                         " \"Speciality\", pesel) VALUES (?, ?, ?, ?) ");
@@ -83,6 +79,9 @@ public class DoctorService {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+            return doctor;
+        } else {
+            return null;
         }
     }
 

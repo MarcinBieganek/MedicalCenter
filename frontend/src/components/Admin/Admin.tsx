@@ -16,7 +16,7 @@ const Admin = () => {
         const response = await api.get('/doctors');
         setDoctors(response.data);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
 

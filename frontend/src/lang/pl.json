@@ -28,6 +28,7 @@
     "register": "Zarejestruj się",
     "noPatient": "Nie ma pacjenta o takich danych",
     "patientExists": "Pacjent o podanym imieniu i nazwisku już jest zarejestrowany",
+    "doctorExists": "Lekarz o podanym imieniu i nazwisku już jest zarejestrowany",
     "hey": "Cześć",
     "date": "Data",
     "dateRequired": "Data jest wymagana",

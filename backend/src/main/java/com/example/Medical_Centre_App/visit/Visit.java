@@ -1,7 +1,12 @@
 package com.example.Medical_Centre_App.visit;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
+
+import org.hibernate.type.descriptor.java.JdbcTimeTypeDescriptor.TimeMutabilityPlan;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Visit {
 
@@ -9,11 +14,13 @@ public class Visit {
     private String doctorPesel;
     private String patientPesel;
     private Boolean isBooked;
-    private Timestamp startDate;
-    private Timestamp endDate;
+    @JsonFormat(pattern = "HH:mm:ss")
+    private Time startDate;
+    @JsonFormat(pattern = "HH:mm:ss")
+    private Time endDate;
     private Date day;
 
-    public Visit(Integer id, String doctorPesel, String patientPesel, Boolean isBooked, Timestamp startDate, Timestamp endDate, Date day) {
+    public Visit(Integer id, String doctorPesel, String patientPesel, Boolean isBooked, Time startDate, Time endDate, Date day) {
         this.id = id;
         this.doctorPesel = doctorPesel;
         this.patientPesel = patientPesel;
@@ -40,12 +47,12 @@ public class Visit {
         return isBooked;
     }
 
-    public Timestamp getStartDate() {
-        return startDate;
+    public java.sql.Time getStartDate() {
+        return new java.sql.Time(endDate.getTime());
     }
 
-    public Timestamp getEndDate() {
-        return endDate;
+    public java.sql.Time getEndDate() {
+        return new java.sql.Time(endDate.getTime());
     }
 
     public java.sql.Date getDay() {
@@ -68,11 +75,11 @@ public class Visit {
         isBooked = booked;
     }
 
-    public void setStartDate(Timestamp startDate) {
+    public void setStartDate(Time startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(Timestamp endDate) {
+    public void setEndDate(Time endDate) {
         this.endDate = endDate;
     }
 

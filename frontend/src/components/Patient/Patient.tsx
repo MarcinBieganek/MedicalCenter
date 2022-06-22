@@ -102,7 +102,7 @@ const Patient = () => {
     getPatient();
     getPatientVisits();
     getUnbookedVisits();
-  }, [params.patientId]);
+  }, [params.patientPesel]);
 
   return (
     <div>

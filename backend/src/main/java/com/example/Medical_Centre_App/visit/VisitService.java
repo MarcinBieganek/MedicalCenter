@@ -24,8 +24,8 @@ public class VisitService {
                     String doctorPesel = resultSet.getString("DoctorPesel");;;
                     String patientPesel = resultSet.getString("PatientPesel");;;
                     Boolean isBooked = resultSet.getBoolean("isBooked");;;
-                    Timestamp startDate = resultSet.getTimestamp("StartDate");;;
-                    Timestamp endDate = resultSet.getTimestamp("EndDate");;;
+                    Time startDate = resultSet.getTime("StartDate");;;
+                    Time endDate = resultSet.getTime("EndDate");;;
                     Date day = resultSet.getDate("Day");;;
                     v.setId(newId);
                     v.setDoctorPesel(doctorPesel);
@@ -85,8 +85,8 @@ public class VisitService {
                         String doctorPesel = resultSet.getString("DoctorPesel");
                         String patientPesel = resultSet.getString("PatientPesel");
                         Boolean isBooked = resultSet.getBoolean("isBooked");
-                        Timestamp startDate = resultSet.getTimestamp("StartDate");
-                        Timestamp endDate = resultSet.getTimestamp("EndDate");
+                        Time startDate = resultSet.getTime("StartDate");
+                        Time endDate = resultSet.getTime("EndDate");
                         Date day = resultSet.getDate("Day");
                         Visit v = new Visit(newId, doctorPesel, patientPesel, isBooked, startDate, endDate, day);
                         visits.add(v);
@@ -106,16 +106,15 @@ public class VisitService {
 
     public void addVisit(Visit visit) {
         try (Connection connection = getConnection()) {
-            PreparedStatement st = connection.prepareStatement(" INSERT INTO \"Visit\" (\"id\", \"DoctorPesel\", " +
+            PreparedStatement st = connection.prepareStatement(" INSERT INTO \"Visit\" (\"DoctorPesel\", " +
                     "\"PatientPesel\", \"isBooked\", \"StartDate\", \"EndDate\", " +
                     "Day) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ");
-            st.setInt(1, visit.getId());
-            st.setString(2, visit.getDoctorPesel());
-            st.setString(3, visit.getPatientPesel());
-            st.setBoolean(4, visit.getBooked());
-            st.setTimestamp(5, visit.getStartDate());
-            st.setTimestamp(6, visit.getEndDate());
-            st.setDate(7, visit.getDay());
+            st.setString(1, visit.getDoctorPesel());
+            st.setString(2, visit.getPatientPesel());
+            st.setBoolean(3, false);
+            st.setTime(4, visit.getStartDate());
+            st.setTime(5, visit.getEndDate());
+            st.setDate(6, visit.getDay());
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -17,12 +17,12 @@ const Doctor = () => {
         const response = await api.get(`/doctor/${params.doctorPesel}`);
         setDoctor(response.data);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
 
     getDoctor();
-  }, [params.doctorId]);
+  }, [params.doctorPesel]);
 
   return (
     <main>

@@ -17,7 +17,7 @@ const PatientRegisterForm = () => {
   const navigate = useNavigate();
 
   const onAdd: SubmitHandler<IPatient> = async (data) => {
-    alert(JSON.stringify(data));
+    // alert(JSON.stringify(data));
     try {
       const newPatient = {
         pesel: data.pesel,

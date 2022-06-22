@@ -15,11 +15,10 @@ const AdminTimeMenager = () => {
 
   const getDoctorsDates = async () => {
     try {
-      const unbookedVisitsResponse = await api.get('/unbookedvisits');
+      const unbookedVisitsResponse = await api.get('/visits', { params: { isBooked: false, doctorPesel: params.doctorPesel } });
       const unbookedVisits = unbookedVisitsResponse.data;
-      const doctorBookedVisits = unbookedVisits.filter((v) => v.doctorPesel === params.doctorPesel);
 
-      const doctorsDates = doctorBookedVisits.map((visit) => ({
+      const doctorsDates = unbookedVisits.map((visit) => ({
         id: visit.id,
         startHour: visit.startTime,
         endHour: visit.endTime,
@@ -44,7 +43,7 @@ const AdminTimeMenager = () => {
 
   useEffect(() => {
     getDoctorsDates();
-  }, [params.doctorId]);
+  }, [params.doctorPesel]);
 
   return (
     <main style={{ padding: '1rem 0' }}>

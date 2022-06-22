@@ -13,15 +13,12 @@ const AdminAppointments = () => {
 
   const getAppointments = async () => {
     try {
-      const bookedVisitsResponse = await api.get('/bookedvisits');
+      const bookedVisitsResponse = await api.get('/visits', { params: { isBooked: true, doctorPesel: params.doctorPesel } });
       const bookedVisits = bookedVisitsResponse.data;
-      const doctorBookedVisits = bookedVisits.filter((v) => v.doctorPesel === params.doctorPesel);
 
-      const patientsResponse = await api.get('/patients');
-      const patients = patientsResponse.data;
-
-      const appointments = doctorBookedVisits.map((visit) => {
-        const visitPatient = patients.find((p) => p.pesel === visit.patientPesel);
+      const appointments = bookedVisits.map(async (visit) => {
+        const patientResponse = await api.get(`/patient/${visit.patientPesel}`);
+        const visitPatient = patientResponse.data;
         return {
           id: visit.id,
           patientFirstName: visitPatient.firstName,
@@ -50,7 +47,7 @@ const AdminAppointments = () => {
 
   useEffect(() => {
     getAppointments();
-  }, [params.doctorId]);
+  }, [params.doctorPesel]);
 
   return (
     <main style={{ padding: '1rem 0' }}>

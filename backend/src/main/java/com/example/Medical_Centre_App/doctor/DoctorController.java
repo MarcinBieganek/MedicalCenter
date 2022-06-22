@@ -1,6 +1,8 @@
 package com.example.Medical_Centre_App.doctor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,8 +30,12 @@ public class DoctorController {
     }
 
     @RequestMapping(method=RequestMethod.POST, value="/doctoradd")
-    public void addDoctor(@RequestBody Doctor doctor) {
-        doctorService.addDoctor(doctor);
+    public ResponseEntity<Doctor> addDoctor(@RequestBody Doctor doctor) {
+        Doctor addedDoctor = doctorService.addDoctor(doctor);
+        if (addedDoctor == null) {
+            return new ResponseEntity<Doctor>(HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<Doctor>(addedDoctor, HttpStatus.CREATED); 
     }
 
     @RequestMapping(method=RequestMethod.POST, value="/doctoredit")
