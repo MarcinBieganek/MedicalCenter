@@ -18,9 +18,6 @@ const DoctorsDate = ({ doctorsDate, deleteItem } : IDoctorsDateProps) => {
       <td>{doctorsDate.startHour}</td>
       <td>{doctorsDate.endHour}</td>
       <td>
-        <Button variant="primary" type="button">{ t('edit') }</Button>
-      </td>
-      <td>
         <Button variant="primary" type="button" onClick={() => deleteItem(doctorsDate)}>{ t('delete') }</Button>
       </td>
     </tr>

@@ -20,7 +20,6 @@ const DoctorsDatesList = ({ doctorsDatesList, deleteItem } : IDoctorsDatesListPr
             <th>{ t('date') }</th>
             <th>{ t('hour from') }</th>
             <th>{ t('hour to') }</th>
-            <th>{ t('edit') }</th>
             <th>{ t('delete') }</th>
           </tr>
         </thead>
