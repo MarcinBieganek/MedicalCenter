@@ -14,13 +14,11 @@ public class Visit {
     private String doctorPesel;
     private String patientPesel;
     private Boolean isBooked;
-    @JsonFormat(pattern = "HH:mm:ss")
-    private Time startDate;
-    @JsonFormat(pattern = "HH:mm:ss")
-    private Time endDate;
-    private Date day;
+    private String startDate;
+    private String endDate;
+    private String day;
 
-    public Visit(Integer id, String doctorPesel, String patientPesel, Boolean isBooked, Time startDate, Time endDate, Date day) {
+    public Visit(Integer id, String doctorPesel, String patientPesel, Boolean isBooked, String startDate, String endDate, String day) {
         this.id = id;
         this.doctorPesel = doctorPesel;
         this.patientPesel = patientPesel;
@@ -47,16 +45,16 @@ public class Visit {
         return isBooked;
     }
 
-    public java.sql.Time getStartDate() {
-        return new java.sql.Time(endDate.getTime());
+    public String getStartDate() {
+        return startDate;
     }
 
-    public java.sql.Time getEndDate() {
-        return new java.sql.Time(endDate.getTime());
+    public String getEndDate() {
+        return endDate;
     }
 
-    public java.sql.Date getDay() {
-        return new java.sql.Date(day.getTime());
+    public String getDay() {
+        return day;
     }
 
     public void setId(Integer id) {
@@ -75,15 +73,15 @@ public class Visit {
         isBooked = booked;
     }
 
-    public void setStartDate(Time startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(Time endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
-    public void setDay(Date day) {
+    public void setDay(String day) {
         this.day = day;
     }
 }

@@ -16,18 +16,18 @@ const AdminAppointments = () => {
       const bookedVisitsResponse = await api.get('/visits', { params: { isBooked: true, doctorPesel: params.doctorPesel } });
       const bookedVisits = bookedVisitsResponse.data;
 
-      const appointments = bookedVisits.map(async (visit) => {
+      const appointments = await Promise.all(bookedVisits.map(async (visit) => {
         const patientResponse = await api.get(`/patient/${visit.patientPesel}`);
         const visitPatient = patientResponse.data;
         return {
           id: visit.id,
           patientFirstName: visitPatient.firstName,
           patientLastName: visitPatient.lastName,
-          startHour: visit.startTime,
-          endHour: visit.endTime,
+          startHour: visit.startDate,
+          endHour: visit.endDate,
           date: visit.day,
         }
-      });
+      }));
 
       setAppointmentsList(appointments);
     } catch (error) {

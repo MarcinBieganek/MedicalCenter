@@ -20,8 +20,8 @@ const AdminTimeMenager = () => {
 
       const doctorsDates = unbookedVisits.map((visit) => ({
         id: visit.id,
-        startHour: visit.startTime,
-        endHour: visit.endTime,
+        startHour: visit.startDate,
+        endHour: visit.endDate,
         date: visit.day,
       }));
 

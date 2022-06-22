@@ -24,9 +24,9 @@ public class VisitService {
                     String doctorPesel = resultSet.getString("DoctorPesel");;;
                     String patientPesel = resultSet.getString("PatientPesel");;;
                     Boolean isBooked = resultSet.getBoolean("isBooked");;;
-                    Time startDate = resultSet.getTime("StartDate");;;
-                    Time endDate = resultSet.getTime("EndDate");;;
-                    Date day = resultSet.getDate("Day");;;
+                    String startDate = resultSet.getString("StartDate");;;
+                    String endDate = resultSet.getString("EndDate");;;
+                    String day = resultSet.getString("Day");;;
                     v.setId(newId);
                     v.setDoctorPesel(doctorPesel);
                     v.setPatientPesel(patientPesel);
@@ -85,9 +85,9 @@ public class VisitService {
                         String doctorPesel = resultSet.getString("DoctorPesel");
                         String patientPesel = resultSet.getString("PatientPesel");
                         Boolean isBooked = resultSet.getBoolean("isBooked");
-                        Time startDate = resultSet.getTime("StartDate");
-                        Time endDate = resultSet.getTime("EndDate");
-                        Date day = resultSet.getDate("Day");
+                        String startDate = resultSet.getString("StartDate");
+                        String endDate = resultSet.getString("EndDate");
+                        String day = resultSet.getString("Day");
                         Visit v = new Visit(newId, doctorPesel, patientPesel, isBooked, startDate, endDate, day);
                         visits.add(v);
                     }
@@ -108,13 +108,13 @@ public class VisitService {
         try (Connection connection = getConnection()) {
             PreparedStatement st = connection.prepareStatement(" INSERT INTO \"Visit\" (\"DoctorPesel\", " +
                     "\"PatientPesel\", \"isBooked\", \"StartDate\", \"EndDate\", " +
-                    "Day) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ");
+                    "\"Day\") VALUES (?, ?, ?, ?, ?, ?) ");
             st.setString(1, visit.getDoctorPesel());
             st.setString(2, visit.getPatientPesel());
             st.setBoolean(3, false);
-            st.setTime(4, visit.getStartDate());
-            st.setTime(5, visit.getEndDate());
-            st.setDate(6, visit.getDay());
+            st.setString(4, visit.getStartDate());
+            st.setString(5, visit.getEndDate());
+            st.setString(6, visit.getDay());
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -133,7 +133,7 @@ public class VisitService {
 
     public void bookVisit(Integer visitId, String patientPesel) {
         try (Connection connection = getConnection()) {
-            PreparedStatement st = connection.prepareStatement(" UPDATE \"Visit\" SET \"isBooked\" = ?, \"patientPesel\" = ? WHERE id = ? ");
+            PreparedStatement st = connection.prepareStatement(" UPDATE \"Visit\" SET \"isBooked\" = ?, \"PatientPesel\" = ? WHERE id = ? ");
             st.setBoolean(1, true);
             st.setString(2, patientPesel);
             st.setInt(3, visitId);
@@ -145,7 +145,7 @@ public class VisitService {
 
     public void unbookVisit(Integer visitId) {
         try (Connection connection = getConnection()) {
-            PreparedStatement st = connection.prepareStatement(" UPDATE \"Visit\" SET \"isBooked\" = ?, , \"patientPesel\" = null WHERE id = ? ");
+            PreparedStatement st = connection.prepareStatement(" UPDATE \"Visit\" SET \"isBooked\" = ?, \"PatientPesel\" = null WHERE id = ? ");
             st.setBoolean(1, false);
             st.setInt(2, visitId);
             st.executeUpdate();

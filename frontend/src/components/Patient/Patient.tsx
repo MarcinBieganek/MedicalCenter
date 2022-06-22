@@ -29,7 +29,7 @@ const Patient = () => {
       const patientBookedVisitsResponse = await api.get('/visits', { params: { patientPesel: params.patientPesel } });
       const patientBookedVisits = patientBookedVisitsResponse.data;
 
-      const patientVisits = patientBookedVisits.map(async (visit) => {
+      const patientVisits = await Promise.all(patientBookedVisits.map(async (visit) => {
         const getDoctorResponse = await api.get(`/doctor/${visit.doctorPesel}`);
         const visitDoctor = getDoctorResponse.data;
         return {
@@ -37,12 +37,12 @@ const Patient = () => {
           doctorFirstName: visitDoctor.firstName,
           doctorLastName: visitDoctor.lastName,
           doctorSpec: visitDoctor.spec,
-          startHour: visit.startTime,
-          endHour: visit.endTime,
+          startHour: visit.startDate,
+          endHour: visit.endDate,
           date: visit.day,
           patientPesel: visit.patientPesel,
         }
-      });
+      }));
 
       setPatientMeetingsList(patientVisits);
     } catch (error) {
@@ -55,7 +55,7 @@ const Patient = () => {
       const unbookedVisitsResponse = await api.get('/visits', { params: { isBooked: false } });
       const unbookedVisits = unbookedVisitsResponse.data;
 
-      const availableMeetings = unbookedVisits.map(async (visit) => {
+      const availableMeetings = await Promise.all(unbookedVisits.map(async (visit) => {
         const getDoctorResponse = await api.get(`/doctor/${visit.doctorPesel}`);
         const visitDoctor = getDoctorResponse.data;
         return {
@@ -63,12 +63,12 @@ const Patient = () => {
           doctorFirstName: visitDoctor.firstName,
           doctorLastName: visitDoctor.lastName,
           doctorSpec: visitDoctor.spec,
-          startHour: visit.startTime,
-          endHour: visit.endTime,
+          startHour: visit.startDate,
+          endHour: visit.endDate,
           date: visit.day,
           patientPesel: visit.patientPesel,
         }
-      });
+      }));
 
       setAvailableMeetingsList(availableMeetings);
     } catch (error) {

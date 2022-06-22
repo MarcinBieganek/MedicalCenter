@@ -1,7 +1,7 @@
 export default interface IDoctorsDate {
   id: string;
-  startHour: Date;
-  endHour: Date;
-  date: Date;
+  startHour: string;
+  endHour: string;
+  date: string;
   pesel: string;
 }

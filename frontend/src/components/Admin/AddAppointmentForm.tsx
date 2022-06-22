@@ -3,12 +3,13 @@ import Form from 'react-bootstrap/Form';
 import FormLabel from 'react-bootstrap/FormLabel';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import api from '../../services/backend';
 import IDoctorsDate from '../../types/IDoctorsDate';
 
 const AddAppointmentForm = () => {
   const { t } = useTranslation();
+  const params = useParams();
   const {
     register, handleSubmit, getValues, formState: { errors },
   } = useForm<IDoctorsDate>();
@@ -21,8 +22,9 @@ const AddAppointmentForm = () => {
       endDate: data.endHour,
       day: data.date,
       isBooked: false,
-      doctorPesel: data.pesel,
+      doctorPesel: params.doctorPesel,
     }
+    console.log(newAppointment);
     try {
       await api.post('/visitadd', newAppointment);
       navigate('/admin');
